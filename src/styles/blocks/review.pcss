@@ -1,0 +1,58 @@
+.review {
+    display: flex;
+    width: 430px;
+}
+
+.review-left {
+    padding: 10px;
+}
+
+.review-right {
+    padding: 10px;
+}
+
+.review__icon-quote {
+    width: 75px;
+    height: 63px;
+    fill: rgba(#464d62, 0.05);
+}
+
+.review-text {
+    color: rgba(#464d62, 0.5);
+    @include osans();
+    font-size: 16px;
+    line-height: 30px;
+    font-weight: 700;
+}
+
+.review-author{
+    display: flex;
+}
+
+.review-author__mask {
+    overflow: hidden;
+    width: 75px;
+    height: 75px;
+    position: relative;
+}
+
+.review-author__pic {
+    display: flex;
+    position: absolute;
+}
+
+.review-author__name {
+    @include osans();
+    color: #464d62;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 48px;
+}
+
+.review-author__desc {
+    @include osans();
+    color: rgba(#464d62, 0.3);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 30px;
+}

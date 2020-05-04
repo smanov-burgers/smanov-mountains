@@ -1,0 +1,23 @@
+.slider {
+    height: 550px;
+    width: 977px;
+    position: relative;
+}
+
+.slider__fillpic {
+    height: 100%;
+    width: 100%;
+}
+
+.slider__current {
+    position: absolute;
+    color: rgba(#e6e6e6, 0.5);
+    @include osans();
+    font-size: 400px;
+    font-weight: 900;
+    line-height: 48px;
+    top: 42%;
+    left: 92.5%;
+    transform: translateY(-50%);
+    z-index: -1;
+}

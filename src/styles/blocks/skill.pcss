@@ -1,0 +1,43 @@
+.skill {
+  position: relative;
+  display: flex;
+  width: 200px;
+  height: 200px;
+  align-items: center;
+  justify-content: center;
+}
+
+.skill__title {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: rgba(#464d62, 0.5);
+  @include osans();
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.skill__circle {
+  fill: transparent;
+
+  &--under {
+    stroke: #e9e9e9;
+    stroke-width: 10px;
+  }
+
+  &--above {
+    stroke: #7200eb;
+    stroke-width: 24px;
+    stroke-dasharray: 502;
+    // stroke-dashoffset: 100%;
+  }
+}
+
+
+
+.skill__shape {
+  width: 164px;
+  height: 164px;
+}

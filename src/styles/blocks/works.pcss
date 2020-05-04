@@ -1,0 +1,40 @@
+.works {
+    display: flex;
+}
+
+.works__left {
+    flex: 2;
+}
+
+.works__right {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 156px;
+}
+
+.works__text{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-top: 40px;
+}
+
+.works__desc-text {
+    color: rgba(#464d62,0.7);
+    @include osans();
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 30px;
+    padding-top: 28px;
+    padding-bottom: 36px;
+}
+
+.works__title {
+    color: #464d62;
+    @include osans();
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 48px;
+}

@@ -1,0 +1,39 @@
+.section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 650px;
+  &--full {
+    height: 100vh;
+  }
+
+  &--half {
+    height: 50vh;
+  }
+
+  &--left {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+}
+
+.welcome-section {
+  background: url(../images/bg/main-bg.png);
+  background-size: cover;
+}
+
+.section-title {
+  color: #464d62;
+  @include osans();
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.last-section {
+  background: url(../images/bg/budha-bg.png);
+  background-size: cover;
+}
+
+.middle-section {
+  padding-bottom: 120px;
+}

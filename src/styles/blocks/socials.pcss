@@ -1,0 +1,39 @@
+.socials {
+  display: flex;
+  align-items: center;
+
+  &__item {
+    margin-right: 40px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__link {
+    &:hover .socials__icon {
+      fill: #5500f2;
+    }
+  }
+
+  &__icon {
+    width: 25px;
+    height: 25px;
+    display: block;
+    fill: #414c63;
+  }
+
+  &--footer {
+    .socials__item {
+      width: 50px;
+      height: 50px;
+      border: 1px solid rgba(#fff, 0.15);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 18px;
+    }
+  }
+}
+
