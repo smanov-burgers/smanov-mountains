@@ -4,16 +4,18 @@
 }
 
 .review-left {
-    padding: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
 }
 
 .review-right {
-    padding: 10px;
+    padding-top: 10px;
+    padding-left: 8px;
 }
 
 .review__icon-quote {
-    width: 75px;
-    height: 63px;
+    width: 80px;
+    height: 90px;
     fill: rgba(#464d62, 0.05);
 }
 
@@ -23,22 +25,21 @@
     font-size: 16px;
     line-height: 30px;
     font-weight: 700;
+    min-height: 120px;
 }
 
 .review-author{
     display: flex;
+    padding-top: 20px;
 }
 
-.review-author__mask {
-    overflow: hidden;
-    width: 75px;
-    height: 75px;
-    position: relative;
-}
 
 .review-author__pic {
     display: flex;
-    position: absolute;
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .review-author__name {
@@ -55,4 +56,8 @@
     font-size: 16px;
     font-weight: 700;
     line-height: 30px;
+}
+
+.review-author__right {
+    padding-left: 30px;
 }

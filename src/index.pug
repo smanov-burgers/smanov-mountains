@@ -92,14 +92,15 @@ html(lang="en")
                         each skill in item[1]
                           li.skills-row__item
                             .skill
-                              svg(viewBox="0 0 200 200" preserveAspectRatio="none").skill__shape
-                                circle(r="80" cx="100" cy="100").skill__circle.skill__circle--under
-                                circle(r="80" cx="100" cy="100" transform='rotate(180 100 100)' stroke-dashoffset=`${(250-skill[1]*2.5) +"%"}`).skill__circle.skill__circle--above
-                                linear-gradient()
-                              .skill__title #{skill[0]}
+                              .skill__wrapper
+                                svg(viewBox="0 0 200 200" preserveAspectRatio="none").skill__shape
+                                  circle(r="80" cx="100" cy="100").skill__circle.skill__circle--under
+                                  circle(r="80" cx="100" cy="100" transform='rotate(180 100 100)' stroke-dashoffset=`${(250-skill[1]*2.5) +"%"}`).skill__circle.skill__circle--above
+                                  linear-gradient()
+                                .skill__title #{skill[0]}
                       
         section.section.works.section--full
-          .container
+          .container.works__container
               .works__title
                 h2.section-title Мои работы
               .works
@@ -133,10 +134,10 @@ html(lang="en")
 
       .last-section
         .triangles
-          svg.triangles__item.triangles__item--rotated(viewBox="0 0 1000 100" preserveAspectRatio="none")
-            polygon(points="0,0 0,100 1000,100")
-          svg.triangles__item.triangles__item--rotated(viewBox="0 0 1000 100" preserveAspectRatio="none")
-            polygon(points="0,100 1000,100 1000,0")
+          svg.triangles__item(viewBox="0 0 1000 100" preserveAspectRatio="none")
+            polygon(points="0,0 1000,80 1000,0")
+          svg.triangles__item(viewBox="0 0 1000 100" preserveAspectRatio="none")
+            polygon(points="0,0 1000,0 0,80")
         
         section.section.reviews.section--half.section--left
           .reviews__title
@@ -158,8 +159,7 @@ html(lang="en")
                       .review-text #{review[0]}
                       .review-author
                         .review-author__left
-                          .review-author__mask
-                            +image(review[3], "review-author__pic")
+                          +image(review[3], "review-author__pic")
                           
                         .review-author__right
                           .review-author__name #{review[1]}
@@ -173,9 +173,10 @@ html(lang="en")
 
               .contact__form-row.contact__form-row--two
                 label.contact__form-block
-                  .contact__form-label Введите ваше имя
-                  +icon('user', 'contact__form-icon')
-                  input.contact__form-input(name='name' type='text' placeholder='Ковальчук Дмитрий' required='')
+                  .contact__form-block-wrapper
+                    .contact__form-label Введите ваше имя
+                    +icon('user', 'contact__form-icon')
+                    input.contact__form-input(name='name' type='text' placeholder='Ковальчук Дмитрий' required='')
 
                 label.contact__form-block
                   .contact__form-label Введите ваш email
