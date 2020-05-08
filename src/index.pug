@@ -10,12 +10,12 @@ html(lang="en")
   body
     .wrapper
       .welcome-section
-        section.parallax-mountains
-          - var n = 1;
-              while n <= 7
-                .parallax-mountains__layer
-                  +image(`parallax/mountain/mountain${n}.png`, "parallax-mountains__image")
-                  - n++;
+        section.parallax.parallax-mountains
+          - var paralaxMountainsSpeed = [0, 0.5, 0.5, 0.38, 0.45, 0.68, 0.4]
+              each item, index in paralaxMountainsSpeed
+                .parallax-mountains__layer(data-speed=`${item}`)
+                  +image(`parallax/mountain/mountain${index+1}.png`, "parallax-mountains__image")
+
         section.section.hero.section--full
           .container.hero__container
             header.header.hero__header
@@ -138,6 +138,12 @@ html(lang="en")
                       .iconed-link__text Посмотреть сайт
 
       .last-section
+        section.parallax.parallax-cloud
+          - var paralaxCloudSpeed = [0, 0.5, 0.5, 0.38, 0.3, 0]
+              each item, index in paralaxCloudSpeed
+                .parallax-cloud__layer(data-speed=`${item}`)
+                  +image(`parallax/cloud/cloud${index+1}.png`, "parallax-cloud__image")
+
         .triangles
           svg.triangles__item(viewBox="0 0 1000 100" preserveAspectRatio="none")
             polygon(points="0,0 1000,80 1000,0")

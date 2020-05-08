@@ -1,15 +1,17 @@
-const parallaxMountains = document.querySelector('.parallax-mountains');
-const layers = parallaxMountains.children;
-var speedsArray = [0, 0.5, 0.5, 0.38, 0.45, 0.68, 0.4];
+//const parallaxMountains = document.querySelectorAll('.parallax-mountains');
+const layers = document.querySelectorAll('[data-speed]');
 
 
 function moveLayersDependsOnScroll (wScroll) {
     Array.from(layers).forEach((layer, idx) => {
-        const divider = speedsArray[idx];
-        if(divider)
+        const divider = layer.dataset.speed;
+        const container = layer.parentElement.parentElement;
+        
+        if(divider && (container.getBoundingClientRect().top + container.offsetHeight > 0))
         {
-            const strafe = wScroll*divider/10;
-        layer.style.transform = `translateY(-${strafe}%)`;
+            console.log(wScroll-container.offsetTop);
+            const strafe = (wScroll-container.offsetTop)*divider/10;
+            layer.style.transform = `translateY(-${strafe}%)`;
         }
         
     });

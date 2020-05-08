@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   min-height: 650px;
+
   &--full {
     height: 120vh;
   }
@@ -22,6 +23,7 @@
   position: relative;
   overflow: hidden;
   background: transparent;
+
   @include tablets {
     background: url(../images/bg/main-bg.png);
     background-size: cover;
@@ -36,8 +38,14 @@
 }
 
 .last-section {
-  background: url(../images/bg/budha-bg.png);
-  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  @include tablets {
+    background: url(../images/bg/budha-bg.png);
+    background-size: cover;
+  }
+
 }
 
 .middle-section {
