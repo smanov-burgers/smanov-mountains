@@ -10,6 +10,12 @@ html(lang="en")
   body
     .wrapper
       .welcome-section
+        section.parallax-mountains
+          - var n = 1;
+              while n <= 7
+                .parallax-mountains__layer
+                  +image(`parallax/mountain/mountain${n}.png`, "parallax-mountains__image")
+                  - n++;
         section.section.hero.section--full
           .container.hero__container
             header.header.hero__header
@@ -34,11 +40,10 @@ html(lang="en")
                 .welcome__desc
                   h1.welcome__title Личный сайт <br/> веб разработчика
                 .welcome__username Владимир <br/> Астаханов
-
             .hero__btns
               .scroll-down-btn Скролл
               +icon('scroll', 'scroll-down-btn__icon')
-          
+            
         section.section.about.section--half
           .container.about__container
             .about__left

@@ -4,11 +4,12 @@
   align-items: center;
   min-height: 650px;
   &--full {
-    height: 100vh;
+    height: 120vh;
   }
 
   &--half {
     height: 50vh;
+    align-items: baseline;
   }
 
   &--left {
@@ -18,8 +19,13 @@
 }
 
 .welcome-section {
-  background: url(../images/bg/main-bg.png);
-  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  @include tablets {
+    background: url(../images/bg/main-bg.png);
+    background-size: cover;
+  }
 }
 
 .section-title {
