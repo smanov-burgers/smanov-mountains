@@ -2,11 +2,26 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    @include desktop {
+        flex-wrap: nowrap;
+        padding-top: 22px;
+
+    }
 }
 
 .welcome__desc {
     width: 100%;
     padding-bottom: 20px;
+
+    @include desktop {
+        margin-right: 60px;
+        @include osans();
+        font-size: 18px;
+        font-weight: 400;
+        text-align: center;
+        line-height: 32px;
+        letter-spacing: 1px;
+    }
 }
 
 .welcome__title {
@@ -16,6 +31,10 @@
     font-size: 18px;
     font-weight: 400;
     text-align: center;
+    @include desktop {
+        text-align: right;
+    }
+
 }
 
 .welcome__username {
@@ -24,4 +43,8 @@
     font-size: 72px;
     font-weight: 900;
     line-height: 60px;
+    @include desktop {
+        
+    letter-spacing: -1px;
+    }
 }

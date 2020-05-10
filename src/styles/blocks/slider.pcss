@@ -1,7 +1,11 @@
 .slider {
-    height: 550px;
-    width: 977px;
+    max-height: 550px;
+    max-width: 977px;
     position: relative;
+
+    @include desktop {
+        padding-left: 32px;
+    }
 }
 
 .slider__fillpic {
@@ -20,4 +24,9 @@
     left: 92.5%;
     transform: translateY(-50%);
     z-index: -1;
+
+    @include desktop {
+        top: 25%;
+        font-size: 324px;
+    }
 }

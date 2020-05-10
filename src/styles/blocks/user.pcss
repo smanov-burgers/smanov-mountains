@@ -7,6 +7,10 @@
 .user__avatar {
   margin-bottom: 20px;
   align-self: center;
+  @include desktop {
+    margin-left: 26px;
+  }
+  
 }
 
 .user__desc {
@@ -15,12 +19,16 @@
   justify-content: center;
   flex-wrap: wrap;
   padding-top: 32px;
+  @include desktop {
+    padding-top: 46px;
+  }
 }
 
 .user__desc-item {
   display: flex;
   width: 100%;
   padding-top: 20px;
+  
 }
 
 .user__col {
@@ -29,9 +37,16 @@
   color: #464d62;
   font-size: 16px;
   font-weight: 700;
+  @include desktop {
+    padding-left: 24px;
+  }
+  
 }
 
 .user__key {
   color: rgba(#464d62, 0.3);
   padding-left: 38px;
+  @include desktop {
+    padding-left: 29px;
+  }
 }

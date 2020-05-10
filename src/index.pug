@@ -11,12 +11,12 @@ html(lang="en")
     .wrapper
       .welcome-section
         section.parallax.parallax-mountains
-          - var paralaxMountainsSpeed = [0, 0.5, 0.5, 0.38, 0.45, 0.68, 0.4]
+          - var paralaxMountainsSpeed = [0, 0.5, 0.5, 0.38, 0.45, 0.68, 0.25]
               each item, index in paralaxMountainsSpeed
                 .parallax-mountains__layer(data-speed=`${item}`)
                   +image(`parallax/mountain/mountain${index+1}.png`, "parallax-mountains__image")
 
-        section.section.hero.section--full
+        section.section.section--full.hero
           .container.hero__container
             header.header.hero__header
               .hero__logo
@@ -67,42 +67,42 @@ html(lang="en")
               .about__text Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
               .about__ps Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
 
-        .triangles
+        .triangles.triangles--indented
           svg.triangles__item(viewBox="0 0 1000 100" preserveAspectRatio="none")
             polygon(points="0,0 0,100 1000,100")
           svg.triangles__item(viewBox="0 0 1000 100" preserveAspectRatio="none")
             polygon(points="0,100 1000,100 1000,0")
 
       .middle-section
-        section.section.section-values.section--full
+        section.section.values.section--full
           .container.values__container
             .values__title
               h2.section-title.values__title-text Чем я могу быть вам полезен вам
-
+              h3.values-subtitle Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
             .values-content
               .values-content__left
                 +image("content/backpack.png", "values__pic")
               .values-content__right
-                h3.values-subtitle Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
-                ul.skill-category
-                  - 
-                    var skills = [
-                      ['Front-end', [['HTML5',80], ['CSS3',60], ['Javascript',70], ['jquery и Vue.js', 50]]],
-                      ['Workflow', [['GIT',90], ['Terminal',30], ['Gulp',40], ['Webpack',35]]],
-                    ]
-                  each item in skills 
-                    li.skill-category__item.skills-row 
-                      h3.skills-row__title #{item[0]}
-                      ul.skills-row__list
-                        each skill in item[1]
-                          li.skills-row__item
-                            .skill
-                              .skill__wrapper
-                                svg(viewBox="0 0 200 200" preserveAspectRatio="none").skill__shape
-                                  circle(r="80" cx="100" cy="100").skill__circle.skill__circle--under
-                                  circle(r="80" cx="100" cy="100" transform='rotate(180 100 100)' stroke-dashoffset=`${(250-skill[1]*2.5) +"%"}`).skill__circle.skill__circle--above
-                                  linear-gradient()
-                                .skill__title #{skill[0]}
+                #skills-component
+                //- ul.skill-category
+                //-   - 
+                //-     var skills = [
+                //-       ['Front-end', [['HTML5',80], ['CSS3',60], ['Javascript',70], ['jquery и Vue.js', 50]]],
+                //-       ['Workflow', [['GIT',90], ['Terminal',30], ['Gulp',40], ['Webpack',35]]],
+                //-     ]
+                //-   each item in skills 
+                //-     li.skill-category__item.skills-row 
+                //-       h3.skills-row__title #{item[0]}
+                //-       ul.skills-row__list
+                //-         each skill in item[1]
+                //-           li.skills-row__item
+                //-             .skill
+                //-               .skill__wrapper
+                //-                 svg(viewBox="0 0 200 200" preserveAspectRatio="none").skill__shape
+                //-                   circle(r="80" cx="100" cy="100").skill__circle.skill__circle--under
+                //-                   circle(r="80" cx="100" cy="100" transform='rotate(180 100 100)' stroke-dashoffset=`${(250-skill[1]*2.5) +"%"}`).skill__circle.skill__circle--above
+                //-                   linear-gradient()
+                //-                 .skill__title #{skill[0]}
                       
         section.section.works.section--full
           .container.works__container
@@ -130,7 +130,7 @@ html(lang="en")
                       each tag in tags
                         li.tags__item #{tag}
                   .works__text
-                    h3.works__title Сайт школы <br/> образования
+                    h3.works__sub-title Сайт школы <br/> образования
                     .works__desc-text
                       p Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
                     a.iconed-link
@@ -139,7 +139,7 @@ html(lang="en")
 
       .last-section
         section.parallax.parallax-cloud
-          - var paralaxCloudSpeed = [0, 0.5, 0.5, 0.38, 0.3, 0]
+          - var paralaxCloudSpeed = [0, 0.5, 0.5, 0.38, 0.3, 0.3]
               each item, index in paralaxCloudSpeed
                 .parallax-cloud__layer(data-speed=`${item}`)
                   +image(`parallax/cloud/cloud${index+1}.png`, "parallax-cloud__image")
@@ -203,29 +203,31 @@ html(lang="en")
               .contact__form-row
                 input#contact.contact__form-button(name='' type='submit' value='Отправить')
         .footer
-          .footer__copyright © 2019
-          .footer__author
-            .footer__author__name Владимир<br/>Астахов
-            .footer__author__desc Личный сайт<br/>веб-разработчика
-          .footer__misc
-            .footer__nav
-              nav.nav.nav--footer
-                - var menu = ['Главная', "Обо мне", "Навыки", "Работы", "Отзывы", "Связаться"]
-                ul.nav__list
-                  each item in menu
-                    li.nav__item
-                      a(href="").nav__link #{item}
-            .footer__left
-              .footer__ps Этот сайт я сделал в рамках обучения в Школе онлайн образования Loftschool
-              .footer__socials
-                - var icons = ['insta', 'vk', 'github']
-                  ul.socials.socials--footer
-                    each item, index in icons
-                      li.socials__item(class=`${index === 1 ? 'active' : ''}`)
-                        a(href="").socials__link
-                          +icon(`${item}`, 'socials__icon')
-            .footer__right
-              .footer__quote Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
-              .footer__quote-author Martin Golding
+          .footer__left
+            .footer__copyright © 2019
+            .footer__author
+              .footer__author__name Владимир<br/>Астахов
+              .footer__author__desc Личный сайт<br/>веб-разработчика
+          .footer__right
+            .footer__misc
+              .footer__nav
+                nav.nav.nav--footer
+                  - var menu = ['Главная', "Обо мне", "Навыки", "Работы", "Отзывы", "Связаться"]
+                  ul.nav__list
+                    each item in menu
+                      li.nav__item
+                        a(href="").nav__link #{item}
+              .footer__misc-left
+                .footer__ps Этот сайт я сделал в рамках обучения в Школе онлайн образования Loftschool
+                .footer__socials
+                  - var icons = ['insta', 'vk', 'github']
+                    ul.socials.socials--footer
+                      each item, index in icons
+                        li.socials__item(class=`${index === 1 ? 'active' : ''}`)
+                          a(href="").socials__link
+                            +icon(`${item}`, 'socials__icon')
+              .footer__misc-right
+                .footer__quote Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
+                .footer__quote-author Martin Golding
             
-        
+      include ./templates/entry.pug

@@ -1,7 +1,13 @@
 .triangles {
   display: flex;
-  margin-top: -120px;
   color: #fff;
+
+  &--indented {
+    margin-top: -120px;
+    @include desktop {
+      margin-top: -192px;
+    }
+  }
 }
 
 .triangles__item {

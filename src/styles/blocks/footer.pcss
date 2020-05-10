@@ -6,6 +6,21 @@
     padding-top: 95px;
     justify-content: space-between;
     align-items: flex-start;
+    @include desktop {
+        padding-left:4px;
+    }
+}
+
+.footer__left {
+    display: flex;
+    flex-wrap: wrap;
+    flex:1;
+}
+
+.footer__right {
+    display: flex;
+    flex-wrap: wrap;
+    flex:1;
 }
 
 .footer__copyright {
@@ -63,13 +78,13 @@
     padding-bottom: 56px;
 }
 
-.footer__left {
+.footer__misc-left {
     display: flex;
     flex-wrap: wrap;
     flex:1;
 }
 
-.footer__right {
+.footer__misc-right {
     display: flex;
     flex-wrap: wrap;
     flex:1;

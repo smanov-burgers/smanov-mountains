@@ -3,9 +3,16 @@
     flex-wrap: wrap;
     padding-left: 210px;
     flex-direction: column;
+    @include desktop {
+        padding-left: 60px;
+        letter-spacing: 2px;
+    }
 }
 
 .contact__title {
     margin-top: 38px;
     width: 100%;
+    @include desktop {
+        margin-top: 0;
+    }
 }

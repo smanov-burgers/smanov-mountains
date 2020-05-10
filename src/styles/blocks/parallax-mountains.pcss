@@ -42,6 +42,10 @@
             width: 192px;
             height: 250px;
 
+            @include desktop {
+                top: 37rem;
+                margin-left: 35%;
+            }
         }
     }
 
@@ -57,6 +61,16 @@
             left: -268px;
             width: 80%;
             top: 660px;
+
+            @include desktop {
+                left: -464px;
+                width: 125%;
+                top: 724px;
+                max-width: 300%;
+                max-height: 300%;
+            }
+
+
         }
     }
 
@@ -78,6 +92,10 @@
         .parallax-mountains__image {
             left: 0;
             bottom: 0;
+
+            @include desktop {
+                bottom: 360px;
+            }
         }
     }
 }

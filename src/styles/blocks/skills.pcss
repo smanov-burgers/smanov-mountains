@@ -2,18 +2,26 @@
     display: flex;
     width: 100%;
     flex-wrap: wrap;
+
+    @include desktop {
+
+        &:not(:first-child) {
+            padding-top: 42px;
+        }
+    }
+
 }
 
 .skills-row__title {
     width: 100%;
     text-align: left;
-    color:#464d62;
+    color: #464d62;
     @include osans();
     font-size: 24px;
     font-weight: 700;
 }
 
-.skills-row__list{
+.skills-row__list {
     width: 100%;
     display: flex;
 }

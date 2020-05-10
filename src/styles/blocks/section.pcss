@@ -41,6 +41,7 @@
   position: relative;
   overflow: hidden;
   background: transparent;
+
   @include tablets {
     background: url(../images/bg/budha-bg.png);
     background-size: cover;
@@ -50,4 +51,8 @@
 
 .middle-section {
   padding-bottom: 120px;
+
+  @include desktop {
+    padding-bottom: 0;
+  }
 }
