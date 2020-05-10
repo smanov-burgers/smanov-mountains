@@ -9,7 +9,6 @@ function moveLayersDependsOnScroll (wScroll) {
         
         if(divider && (container.getBoundingClientRect().top + container.offsetHeight > 0))
         {
-            console.log(wScroll-container.offsetTop);
             const strafe = (wScroll-container.offsetTop)*divider/10;
             layer.style.transform = `translateY(-${strafe}%)`;
         }

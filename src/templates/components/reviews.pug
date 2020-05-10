@@ -1,0 +1,20 @@
+script(type="text/x-template")#reviews-slider
+    hooper.reviews__list(:itemsToShow="2", :itemsToSlide="2")
+        hooper-navigation(slot="hooper-addons")
+            div(slot="hooper-prev").reviews-slider__button.reviews-slider__button--prev
+                +icon('arrow-down', 'reviews-slider__button__icon')
+            div(slot="hooper-next").reviews-slider__button.reviews-slider__button--next
+                +icon('arrow-down', 'reviews-slider__button__icon ')
+                
+        slide.reviews__list-item.review( v-for="review in reviews" :key="review.id") 
+            .review-left
+                +icon('quote', 'review__icon-quote')
+            .review-right 
+                .review-text {{review.content}}
+                .review-author
+                    .review-author__left
+                        img.review-author__pic(:src="review.avatar")
+                    
+                    .review-author__right
+                        .review-author__name {{review.name}}
+                        .review-author__desc {{review.desc}}

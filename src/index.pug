@@ -84,25 +84,6 @@ html(lang="en")
                 +image("content/backpack.png", "values__pic")
               .values-content__right
                 #skills-component
-                //- ul.skill-category
-                //-   - 
-                //-     var skills = [
-                //-       ['Front-end', [['HTML5',80], ['CSS3',60], ['Javascript',70], ['jquery и Vue.js', 50]]],
-                //-       ['Workflow', [['GIT',90], ['Terminal',30], ['Gulp',40], ['Webpack',35]]],
-                //-     ]
-                //-   each item in skills 
-                //-     li.skill-category__item.skills-row 
-                //-       h3.skills-row__title #{item[0]}
-                //-       ul.skills-row__list
-                //-         each skill in item[1]
-                //-           li.skills-row__item
-                //-             .skill
-                //-               .skill__wrapper
-                //-                 svg(viewBox="0 0 200 200" preserveAspectRatio="none").skill__shape
-                //-                   circle(r="80" cx="100" cy="100").skill__circle.skill__circle--under
-                //-                   circle(r="80" cx="100" cy="100" transform='rotate(180 100 100)' stroke-dashoffset=`${(250-skill[1]*2.5) +"%"}`).skill__circle.skill__circle--above
-                //-                   linear-gradient()
-                //-                 .skill__title #{skill[0]}
                       
         section.section.works.section--full
           .container.works__container
@@ -139,7 +120,7 @@ html(lang="en")
 
       .last-section
         section.parallax.parallax-cloud
-          - var paralaxCloudSpeed = [0, 0.5, 0.5, 0.38, 0.3, 0.3]
+          - var paralaxCloudSpeed = [0, -0.5, -0.5, -0.38, -0.3, -0.3]
               each item, index in paralaxCloudSpeed
                 .parallax-cloud__layer(data-speed=`${item}`)
                   +image(`parallax/cloud/cloud${index+1}.png`, "parallax-cloud__image")
@@ -154,27 +135,12 @@ html(lang="en")
           .reviews__title
             h2.section-title Что обо мне говорят
             .reviews__slider-buttons.reviews-slider__buttons
-              button.reviews-slider__button.reviews-slider__button--prev 
-                +icon('arrow-down', 'reviews-slider__button__icon')
-              button.reviews-slider__button.reviews-slider__button--next
-                +icon('arrow-down', 'reviews-slider__button__icon')
-
+              //- button.reviews-slider__button.reviews-slider__button--prev 
+              //-   +icon('arrow-down', 'reviews-slider__button__icon')
+              //- button.reviews-slider__button.reviews-slider__button--next
+              //-   +icon('arrow-down', 'reviews-slider__button__icon')
           .reviews__slider
-            ul.reviews__list
-              - var reviews = [['Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!','Ковальчук Дмитрий','Основатель Loftschool','content/reviewer1.png' ], ['Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах','Владимир Сабанцев','Преподаватель','content/reviewer2.png' ]]
-                each review in reviews
-                  li.reviews__list-item.review 
-                    .review-left
-                      +icon('quote', 'review__icon-quote')
-                    .review-right 
-                      .review-text #{review[0]}
-                      .review-author
-                        .review-author__left
-                          +image(review[3], "review-author__pic")
-                          
-                        .review-author__right
-                          .review-author__name #{review[1]}
-                          .review-author__desc #{review[2]}
+            #reviewsSlider
         
         section.section.contact.section--half.section--left
           .contact__title
