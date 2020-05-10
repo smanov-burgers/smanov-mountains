@@ -3,7 +3,7 @@ import {
     Hooper,
     Slide,
     Navigation as HooperNavigation
-    } from 'hooper';
+} from 'hooper';
 import 'hooper/dist/hooper.css';
 
 new Vue({
@@ -14,9 +14,19 @@ new Vue({
     },
     data() {
         return {
-          reviews: []
+            reviews: [],
+            hooperSettings: {
+                itemsToShow: 1,
+                itemsToSlide: 1,
+                breakpoints: {
+                    320: {
+                        itemsToShow: 2,
+                        itemsToSlide: 2,
+                    }
+                }
+            }
         };
-      },
+    },
     methods: {
         makeArrWithRequireImages(array) {
             return array.map((item) => {

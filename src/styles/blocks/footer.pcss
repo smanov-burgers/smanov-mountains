@@ -8,19 +8,25 @@
     align-items: flex-start;
     @include desktop {
         padding-left:4px;
+        padding-right: 0;
     }
 }
 
 .footer__left {
     display: flex;
-    flex-wrap: wrap;
     flex:1;
+    @include desktop {
+        flex-wrap: wrap;
+    }
 }
 
 .footer__right {
     display: flex;
     flex-wrap: wrap;
-    flex:1;
+    flex:3;
+    @include desktop {
+        flex-wrap: wrap;
+    }
 }
 
 .footer__copyright {
@@ -31,17 +37,21 @@
     font-weight: 700;
     line-height: 48px;
     flex-shrink: 0;
-    padding: 0 60px;
-    padding-right: 50px;
+    padding-left: 50px;
 }
 
 .footer__author {
     display: flex;
     flex-wrap: wrap;
+    margin-left: 60px;
+    @include desktop {
+        padding-top: 20px;
+    }
 }
 
 .footer__author__name {
     @include osans();
+    width: 100%;
     color: #fff;
     font-size: 18px;
     font-weight: 700;
@@ -70,7 +80,11 @@
 .footer__misc {
     display: flex;
     flex-wrap: wrap;
-    padding-left: 138px;
+    padding-left: 160px;
+    @include desktop {
+        padding-left: 40px;
+        padding-right: 120px;
+    }
 }
 
 .footer__nav {
@@ -105,12 +119,13 @@
     font-weight: 400;
     line-height: 30px;
     font-style: italic;
+    padding-top: 48px;
+    @include desktop {
+        padding-top: 16px;
+    }
+    
 }
 
 .footer__socials {
     padding-top: 22px;
-}
-
-.footer__quote-author{
-    padding-top: 48px;
 }

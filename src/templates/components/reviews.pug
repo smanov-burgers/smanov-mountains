@@ -1,5 +1,5 @@
 script(type="text/x-template")#reviews-slider
-    hooper.reviews__list(:itemsToShow="2", :itemsToSlide="2")
+    hooper.reviews__list(:settings="hooperSettings")
         hooper-navigation(slot="hooper-addons")
             div(slot="hooper-prev").reviews-slider__button.reviews-slider__button--prev
                 +icon('arrow-down', 'reviews-slider__button__icon')
