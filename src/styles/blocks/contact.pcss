@@ -7,6 +7,9 @@
         padding-left: 60px;
         letter-spacing: 2px;
     }
+    @include tablets {
+        padding-left: 0;
+    }
 }
 
 .contact__title {
@@ -14,5 +17,8 @@
     width: 100%;
     @include desktop {
         margin-top: 0;
+    }
+    @include tablets {
+        text-align: center;
     }
 }

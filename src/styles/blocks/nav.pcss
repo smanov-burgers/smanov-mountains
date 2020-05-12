@@ -31,7 +31,7 @@
     font-family: "Open Sans";
     font-size: 16px;
     font-weight: 400;
-  
+
     &:hover {
       color: #5500f2;
     }
@@ -43,6 +43,12 @@
     .nav__list {
       align-items: flex-start;
       padding-left: 0;
+
+      @include tablets {
+        flex-wrap: wrap;
+        padding-left: 0;
+        display: flex;
+      }
     }
 
     .nav__link {
@@ -50,4 +56,3 @@
     }
   }
 }
-

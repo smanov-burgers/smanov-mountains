@@ -1,6 +1,9 @@
 .review {
     display: flex;
     width: 430px;
+    @include tablets {
+        width: 320px;
+    }
 }
 
 .review-left {
@@ -17,6 +20,10 @@
     width: 80px;
     height: 90px;
     fill: rgba(#464d62, 0.05);
+    @include tablets {
+        width: 26px;
+        height: 30px;
+    }
 }
 
 .review-text {
@@ -27,6 +34,12 @@
     font-weight: 700;
     min-height: 120px;
     max-width: 310px;
+    @include tablets {
+        font-size: 14px;
+        line-height: 28px;
+        max-height: 100px;
+        overflow: hidden;
+    }
 }
 
 .review-author{
@@ -59,6 +72,16 @@
     line-height: 30px;
 }
 
+.review-author__left {
+    @include tablets {
+        width: 75px;
+        height: 75px;
+    }
+}
+
 .review-author__right {
     padding-left: 30px;
+    @include tablets {
+        padding-left: 34px;
+    }
 }

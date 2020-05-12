@@ -6,6 +6,9 @@
 
   &--full {
     height: 120vh;
+    @include tablets {
+      height: 100vh;
+    }
   }
 
   &--half {
@@ -35,6 +38,9 @@
   @include osans();
   font-size: 36px;
   font-weight: 700;
+  @include tablets {
+    font-size: 32px;
+  }
 }
 
 .last-section {
@@ -54,5 +60,11 @@
 
   @include desktop {
     padding-bottom: 0;
+  }
+}
+
+.parallax {
+  @include tablets {
+    display: none;
   }
 }

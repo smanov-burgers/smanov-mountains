@@ -10,6 +10,11 @@
         padding-left: 60px;
         letter-spacing: 2px;
     }
+    @include tablets {
+        padding-top: 164px;
+        padding-left: 44px;
+        letter-spacing: 2px;
+    }
 }
 
 .reviews__title {
@@ -24,5 +29,8 @@
 
 .reviews__slider {
     width: 1000px;
-    margin-top: 80px;
+    margin-top: 64px;
+    @include tablets {
+        width: 100%;
+    }
 }

@@ -2,10 +2,15 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
     @include desktop {
         flex-wrap: nowrap;
         padding-top: 22px;
 
+    }
+
+    @include tablets {
+        flex-direction: column;
     }
 }
 
@@ -31,10 +36,15 @@
     font-size: 18px;
     font-weight: 400;
     text-align: center;
+
     @include desktop {
         text-align: right;
     }
 
+    @include tablets {
+        text-align: center;
+        font-size: 16px;
+    }
 }
 
 .welcome__username {
@@ -43,8 +53,13 @@
     font-size: 72px;
     font-weight: 900;
     line-height: 60px;
+
     @include desktop {
-        
-    letter-spacing: -1px;
+        letter-spacing: -1px;
+    }
+
+    @include tablets {
+        font-size: 54px;
+        letter-spacing: 0.5px;
     }
 }

@@ -6,11 +6,21 @@
     @include desktop {
         padding-left: 32px;
     }
+    @include tablets {
+        max-width: 705px;
+        display: flex;
+        max-width:92%;
+        flex-direction: column;
+        padding-left: 20px;
+    }
 }
 
 .slider__fillpic {
     height: 100%;
     width: 100%;
+    @include tablets {
+        max-height: 80%;
+    }
 }
 
 .slider__current {
@@ -28,5 +38,9 @@
     @include desktop {
         top: 25%;
         font-size: 324px;
+    }
+    @include tablets {
+        top: 22%;
+        font-size: 350px;
     }
 }

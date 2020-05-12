@@ -2,6 +2,12 @@
     display: flex;
     align-items: flex-start;
     max-height: 746px;
+
+    @include tablets {
+        flex-direction: column;
+        max-height: initial;
+        height: 90vh;
+    }
 }
 
 .works__title {
@@ -19,11 +25,22 @@
         letter-spacing: 2px;
         margin-bottom: 60px;
     }
+    @include tablets {
+        flex-direction: column;
+        max-height: initial;
+        padding-top: 0;
+        margin-top: 110px;
+        padding-left: 22px;
+        font-size: 28px;
+    }
 }
 
 .works__left {
     display: flex;
     flex: 2;
+    @include tablets {
+        flex: 1;
+    }
 }
 
 .works__right {
@@ -49,6 +66,10 @@
     @include desktop {
         padding-top: 30px;
     }
+    @include tablets {
+        text-align: center;
+        align-items: center;
+    }
 }
 
 .works__desc-text {
@@ -63,6 +84,11 @@
         padding-top: 0;
         padding-left: 34px;
         line-height: 32px;
+    }
+    @include tablets {
+        padding-top: 0;
+        padding-left:0;
+        max-width: 80%;
     }
 }
 
@@ -82,4 +108,17 @@
         letter-spacing: 2px;
         margin-bottom: 36px;
     }
+    @include tablets {
+        padding-left: 0;;
+        font-size: 32px;
+    }
+
+    & br {
+        @include tablets {
+            display: none;
+        }
+    }
+
+
+    
 }

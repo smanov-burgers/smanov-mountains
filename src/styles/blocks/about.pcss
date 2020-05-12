@@ -32,6 +32,10 @@
     padding-left: 65px;
     padding-right: 0;
   }
+  @include tablets {
+    padding-left: 32px;
+    padding-right: 0;
+  }
 }
 
 .about__prolog,
@@ -54,7 +58,10 @@
     padding-left: 6px;
     min-height: 195px;
   }
-
+  @include tablets {
+    padding-top: 46px;
+    min-height: 166px;
+  }
 }
 
 .about__title {
@@ -64,6 +71,9 @@
   font-weight: 700;
   padding-top: 17px;
   letter-spacing: 1px;
+  @include tablets {
+    padding-top: 0;
+  }
 }
 
 .about__ps {
@@ -75,6 +85,10 @@
     font-weight: 400;
     font-style: italic;
     line-height: 32px;
+  }
+
+  @include tablets {
+    line-height: 28px;
   }
 }
 

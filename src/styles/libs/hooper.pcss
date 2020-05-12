@@ -11,12 +11,21 @@
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
     cursor: pointer;
+    @include tablets {
+        top: -80px !important;
+    }
 }
 
 .hooper-next {
     left: 59% !important;
+    @include tablets {
+        left: 61% !important;
+    }
 }
 
 .hooper-prev {
     left: 51% !important;
+    @include tablets {
+        left: 50% !important;
+    }
 }
