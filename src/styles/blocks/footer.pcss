@@ -6,6 +6,42 @@
     padding-top: 95px;
     justify-content: space-between;
     align-items: flex-start;
+    @include desktop {
+        padding-left:4px;
+        padding-right: 0;
+    }
+    @include tablets {
+        padding-top: 60px;
+        max-height: initial;
+    }
+    @include phones {
+        flex-wrap: wrap;
+        padding-top: 70px;
+    }
+}
+
+.footer__left {
+    display: flex;
+    flex:1;
+    @include desktop {
+        flex-wrap: wrap;
+    }
+    @include phones {
+        flex-basis: 100%;
+    }
+}
+
+.footer__right {
+    display: flex;
+    flex-wrap: wrap;
+    flex:3;
+    @include desktop {
+        flex-wrap: wrap;
+    }
+    @include phones {
+        padding-top: 70px;
+        padding-left: 36px;
+    }
 }
 
 .footer__copyright {
@@ -16,22 +52,42 @@
     font-weight: 700;
     line-height: 48px;
     flex-shrink: 0;
-    padding: 0 60px;
-    padding-right: 50px;
+    padding-left: 50px;
+
+    @include tablets {
+        padding-left: 40px;
+    }
+    @include phones {
+        font-size: 54px;
+        padding-left: 28px;
+    }
 }
 
 .footer__author {
     display: flex;
     flex-wrap: wrap;
+    margin-left: 60px;
+    @include desktop {
+        padding-top: 20px;
+    }
+    @include tablets {
+        margin-left: 34px;
+    }
 }
 
 .footer__author__name {
     @include osans();
+    width: 100%;
     color: #fff;
     font-size: 18px;
     font-weight: 700;
     line-height: 30px;
     text-transform: uppercase;
+    @include phones {
+        & br {
+            display: none;
+        }
+    }
 }
 
 .footer__author__desc {
@@ -42,6 +98,11 @@
     line-height: 30px;
     padding-top: 18px;
     min-width: 144px;
+    @include phones {
+        & br {
+            display: none;
+        }
+    }
 }
 
 .footer__ps {
@@ -55,24 +116,49 @@
 .footer__misc {
     display: flex;
     flex-wrap: wrap;
-    padding-left: 138px;
+    padding-left: 160px;
+    @include desktop {
+        padding-left: 40px;
+        padding-right: 120px;
+    }
+    @include tablets {
+        padding-right: 50px;
+        padding-left: 86px;
+    }
+    @include phones {
+        padding-right: 50px;
+        padding-left: 0;
+    }
 }
 
 .footer__nav {
     width: 100%;
     padding-bottom: 56px;
+    @include tablets {
+        padding-bottom: 30px;
+    }
 }
 
-.footer__left {
+.footer__misc-left {
     display: flex;
     flex-wrap: wrap;
     flex:1;
+    @include tablets {
+        flex-basis: 100%;
+    }
+    
 }
 
-.footer__right {
+.footer__misc-right {
     display: flex;
     flex-wrap: wrap;
     flex:1;
+    @include tablets {
+        flex-basis: 100%;
+    }
+    @include phones {
+        margin-top: 60px;
+    }
 }
 
 .footer__quote {
@@ -90,12 +176,16 @@
     font-weight: 400;
     line-height: 30px;
     font-style: italic;
+    padding-top: 48px;
+    @include desktop {
+        padding-top: 16px;
+    }
+    
 }
 
 .footer__socials {
     padding-top: 22px;
-}
-
-.footer__quote-author{
-    padding-top: 48px;
+    @include tablets {
+        padding-top: 12px;
+    }
 }

@@ -2,11 +2,31 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
+    @include desktop {
+        flex-wrap: nowrap;
+        padding-top: 22px;
+
+    }
+
+    @include tablets {
+        flex-direction: column;
+    }
 }
 
 .welcome__desc {
     width: 100%;
     padding-bottom: 20px;
+
+    @include desktop {
+        margin-right: 60px;
+        @include osans();
+        font-size: 18px;
+        font-weight: 400;
+        text-align: center;
+        line-height: 32px;
+        letter-spacing: 1px;
+    }
 }
 
 .welcome__title {
@@ -16,6 +36,20 @@
     font-size: 18px;
     font-weight: 400;
     text-align: center;
+
+    @include desktop {
+        text-align: right;
+    }
+
+    @include tablets {
+        text-align: center;
+        font-size: 16px;
+    }
+
+    @include phones {
+        text-align: center;
+        font-size: 14px;
+    }
 }
 
 .welcome__username {
@@ -24,4 +58,18 @@
     font-size: 72px;
     font-weight: 900;
     line-height: 60px;
+
+    @include desktop {
+        letter-spacing: -1px;
+    }
+
+    @include tablets {
+        font-size: 54px;
+        letter-spacing: 0.5px;
+    }
+
+    @include phones {
+        font-size: 36px;
+        letter-spacing: 0.5px;
+    }
 }

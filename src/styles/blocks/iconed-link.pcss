@@ -2,6 +2,15 @@
     text-decoration: none;
     display: flex;
     align-items: center;
+    @include desktop {
+        padding-left: 34px;
+    }
+    @include tablets {
+        padding-left: 0;
+    }
+    @include phones {
+        text-align: left;
+    }
 }
 
 .iconed-link__icon {

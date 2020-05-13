@@ -1,0 +1,41 @@
+.hooper {
+    height: auto !important;
+}
+
+.hooper-next, .hooper-prev {
+    background-color: transparent;
+    border: none;
+    padding: 0!important;
+    position: absolute;
+    top: -100px !important;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    cursor: pointer;
+    @include tablets {
+        top: -80px !important;
+    }
+    @include phones {
+        top: -50px !important;
+    }
+}
+
+.hooper-next {
+    left: 59% !important;
+    @include tablets {
+        left: 61% !important;
+    }
+    @include phones {
+        left: 55% !important;
+    }
+}
+
+.hooper-prev {
+    left: 51% !important;
+    @include tablets {
+        left: 53% !important;
+    }
+
+    @include phones {
+        left: 30% !important;
+    }
+}

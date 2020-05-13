@@ -1,12 +1,30 @@
 .slider {
-    height: 550px;
-    width: 977px;
+    max-height: 550px;
+    max-width: 977px;
     position: relative;
+
+    @include desktop {
+        padding-left: 32px;
+    }
+    @include tablets {
+        max-width: 705px;
+        display: flex;
+        max-width:92%;
+        flex-direction: column;
+        padding-left: 20px;
+    }
+    @include phones {
+        padding-left: 0;
+        max-width: 100%;
+    }
 }
 
 .slider__fillpic {
     height: 100%;
     width: 100%;
+    @include tablets {
+        max-height: 80%;
+    }
 }
 
 .slider__current {
@@ -20,4 +38,13 @@
     left: 92.5%;
     transform: translateY(-50%);
     z-index: -1;
+
+    @include desktop {
+        top: 25%;
+        font-size: 324px;
+    }
+    @include tablets {
+        top: 22%;
+        font-size: 350px;
+    }
 }

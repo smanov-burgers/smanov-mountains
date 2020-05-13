@@ -4,11 +4,29 @@
     padding-left: 210px;
     padding-top: 138px;
     flex-direction: column;
+
+    @include desktop {
+        padding-top: 46px;
+        padding-left: 60px;
+        letter-spacing: 2px;
+    }
+    @include tablets {
+        padding-top: 138px;
+        padding-left: 44px;
+        letter-spacing: 2px;
+    }
+    @include phones {
+        padding-top: 86px;
+        padding-left: 0;
+    }
 }
 
 .reviews__title {
     display: flex;
     width: 100%;
+    @include phones {
+        justify-content: center;
+    }
 }
 
 .reviews__list {
@@ -17,6 +35,13 @@
 }
 
 .reviews__slider {
-    width: 932px;
-    margin-top: 80px;
+    width: 1000px;
+    margin-top: 64px;
+    @include tablets {
+        width: 100%;
+    }
+    @include phones {
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
 }

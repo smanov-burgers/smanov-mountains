@@ -1,13 +1,60 @@
 .works {
     display: flex;
+    align-items: flex-start;
+    max-height: 746px;
+
+    @include tablets {
+        flex-direction: column;
+        max-height: initial;
+        height: 90vh;
+    }
+    @include phones {
+        height: auto;
+    }
+}
+
+.works__container {
+    @include phones {
+        width: 100%;
+    }
 }
 
 .works__title {
+    margin-top: 10px;
     margin-bottom: 90px;
+    color: #464d62;
+    @include osans();
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 48px;
+
+    @include desktop {
+        padding-top: 66px;
+        padding-left: 32px;
+        letter-spacing: 2px;
+        margin-bottom: 60px;
+    }
+    @include tablets {
+        flex-direction: column;
+        max-height: initial;
+        padding-top: 0;
+        margin-top: 110px;
+        padding-left: 22px;
+        font-size: 28px;
+    }
+
+    @include phones {
+        text-align: center;
+        padding-left: 0;
+    }
 }
 
 .works__left {
+    display: flex;
     flex: 2;
+    @include tablets {
+        flex: 1;
+    }
 }
 
 .works__right {
@@ -16,29 +63,93 @@
     flex-direction: column;
     justify-content: flex-start;
     margin-left: 156px;
+
+    @include desktop {
+        margin-right: 68px;
+        margin-left: 78px;
+        align-items: center;
+        padding-top: 10px;
+    }
+    @include phones {
+        margin-right: 5%;
+        margin-left: 5%;
+        align-items: center;
+        padding-top: 10px;
+        margin-bottom: 100px;
+    }
 }
 
-.works__text{
+.works__text {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     padding-top: 40px;
+    @include desktop {
+        padding-top: 30px;
+    }
+    @include tablets {
+        text-align: center;
+        align-items: center;
+    }
+    @include phones {
+        text-align: left;
+        align-items: flex-start;
+    }
 }
 
 .works__desc-text {
-    color: rgba(#464d62,0.7);
+    color: rgba(#464d62, 0.7);
     @include osans();
     font-size: 16px;
     font-weight: 700;
     line-height: 30px;
     padding-top: 28px;
     padding-bottom: 36px;
+    @include desktop {
+        padding-top: 0;
+        padding-left: 34px;
+        line-height: 32px;
+    }
+    @include tablets {
+        padding-top: 0;
+        padding-left:0;
+        max-width: 80%;
+    }
+    @include phones {
+        max-width: 95%;
+    }
 }
 
-.works__title {
+.works__sub-title {
+    margin-top: 10px;
+    margin-bottom: 90px;
     color: #464d62;
     @include osans();
     font-size: 30px;
     font-weight: 700;
     line-height: 48px;
+
+    @include desktop {
+        margin-top: 0;
+        padding-top: 16px;
+        padding-left: 32px;
+        letter-spacing: 2px;
+        margin-bottom: 36px;
+    }
+    @include tablets {
+        padding-left: 0;;
+        font-size: 32px;
+    }
+    @include phones {
+        max-width: 95%;
+    }
+
+    & br {
+        @include tablets {
+            display: none;
+        }
+    }
+
+
+    
 }

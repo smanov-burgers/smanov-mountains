@@ -2,6 +2,9 @@
     display: flex;
     justify-content: flex-end;
     margin-left: 130px;
+    @include phones {
+        margin-left: 0;
+    }
 }
 
 .reviews-slider__button {
@@ -12,7 +15,15 @@
     border: 1px solid #353e4e;
     border-radius: 50%;
     margin-right: 30px;
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include phones {
+        width: 56px;
+        height: 56px;
+    }
+
     &__icon {
         width: 10px;
         height: 10px;
