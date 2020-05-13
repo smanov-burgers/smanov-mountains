@@ -1,9 +1,20 @@
 .contact__form {
   margin-top: 80px;
   padding-left: 46px;
+  margin-bottom: 50px;
 
   @include tablets {
     padding-left: 80px;
+    max-width: calc(100%-20px);
+  }
+
+  @include phones {
+    padding-left: 0;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 100px;
   }
 
   &:before,
@@ -23,6 +34,12 @@
   margin-bottom: 40px;
   display: flex;
 
+  @include phones {
+    max-width: 80%;
+    align-items: center;
+    justify-content: center;
+  }
+
   &:last-child {
     margin-bottom: 0;
     @include tablets {
@@ -38,6 +55,12 @@
     margin-left: -40px;
   }
 
+  @include phones {
+    flex-wrap: wrap;
+    max-width: 80%;
+    margin-left: 0;
+  }
+
   .contact__form-block {
     width: calc(100% / 2 - 120px);
     margin-left: 120px;
@@ -50,11 +73,21 @@
         margin-left: 12%;
       }
     }
+
+    @include phones {
+      width: 100%;
+      margin-left: 0;
+      margin-top: 40px;
+      &:last-child {
+        margin-left: 0;
+      }
+    }
   }
 }
 
 .contact__form-block-wrapper {
   padding-bottom: 7px;
+  
 }
 
 .contact__form-label {
@@ -107,6 +140,9 @@
     left: -50px;
     top: 40px;
   }
+  @include phones {
+    display: none;
+  }
 }
 
 
@@ -139,6 +175,12 @@
   @include tablets {
     font-size: 20px;
     padding: 34px 140px;
+    margin: 0;
+    margin-top: 20px;
+  }
+  @include phones {
+    font-size: 16px;
+    padding: 24px 100px;
     margin: 0;
     margin-top: 20px;
   }

@@ -19,22 +19,29 @@ html(lang="en")
         section.section.section--full.hero
           .container.hero__container
             header.header.hero__header
-              .hero__logo
+              .header__logo
                 .logo BA
-              .hero__links 
+              .header__menu
+                a.header__menu-close(href="")
                 nav.nav
                   - var menu = ['Главная', "Обо мне", "Навыки", "Работы", "Отзывы", "Связаться"]
                   ul.nav__list
                     each item in menu
                       li.nav__item
                         a(href="").nav__link #{item}
-              .hero__menu
+                
+              .header__links
                 - var icons = ['insta', 'vk', 'github']
                 ul.socials
                   each item, index in icons
                     li.socials__item(class=`${index === 1 ? 'active' : ''}`)
                       a(href="").socials__link
                         +icon(`${item}`, 'socials__icon')
+              .header__hamburger
+                a.header__hamburger-menu(href="")
+                  .header__hamburger-bars
+              </a>
+
             .hero__content
               .welcome
                 .welcome__desc
@@ -145,34 +152,32 @@ html(lang="en")
         section.section.contact.section--half.section--left
           .contact__title
             h2.section-title Связаться со мной
-          .contact__form
-            form#contact-form
+          form#contact-form.contact__form
+            .contact__form-row.contact__form-row--two
+              label.contact__form-block
+                .contact__form-block-wrapper
+                  .contact__form-label Введите ваше имя
+                  +icon('user', 'contact__form-icon')
+                  input.contact__form-input(name='name' type='text' placeholder='Ковальчук Дмитрий' required='')
 
-              .contact__form-row.contact__form-row--two
-                label.contact__form-block
-                  .contact__form-block-wrapper
-                    .contact__form-label Введите ваше имя
-                    +icon('user', 'contact__form-icon')
-                    input.contact__form-input(name='name' type='text' placeholder='Ковальчук Дмитрий' required='')
+              label.contact__form-block
+                .contact__form-label Введите ваш email
+                +icon('envelope', 'contact__form-icon')
+                input.contact__form-input.phone-mask(name='email' type='email' placeholder='loftschool@study.com' required='')
 
-                label.contact__form-block
-                  .contact__form-label Введите ваш email
-                  +icon('envelope', 'contact__form-icon')
-                  input.contact__form-input.phone-mask(name='email' type='email' placeholder='loftschool@study.com' required='')
-
-              .contact__form-row
-                label.contact__form-block
-                  .contact__form-label Сообщение к письму
-                  +icon('message', 'contact__form-icon')
-                  textarea.contact__form-input.contact__form-input_textarea(name='comment' placeholder!='Требуется ваша помощь в создании сайта.\nИнтересуют сроки и цена вопроса' required='')
-        
-              .contact__form-row
-                input#contact.contact__form-button(name='' type='submit' value='Отправить')
-        .footer
+            .contact__form-row
+              label.contact__form-block
+                .contact__form-label Сообщение к письму
+                +icon('message', 'contact__form-icon')
+                textarea.contact__form-input.contact__form-input_textarea(name='comment' placeholder!='Требуется ваша помощь в создании сайта.\nИнтересуют сроки и цена вопроса' required='')
+      
+            .contact__form-row
+              input#contact.contact__form-button(name='' type='submit' value='Отправить')
+        section.footer
           .footer__left
             .footer__copyright © 2019
             .footer__author
-              .footer__author__name Владимир<br/>Астахов
+              .footer__author__name Владимир <br/>Астахов
               .footer__author__desc Личный сайт<br/>веб-разработчика
           .footer__right
             .footer__misc

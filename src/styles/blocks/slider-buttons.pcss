@@ -1,6 +1,11 @@
 .slider__buttons {
     display: flex;
     justify-content: flex-end;
+    @include phones {
+        position: absolute;
+        right: 0;
+        bottom: 50px;
+    }
 }
 
 .slider-button {

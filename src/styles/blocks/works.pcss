@@ -8,6 +8,15 @@
         max-height: initial;
         height: 90vh;
     }
+    @include phones {
+        height: auto;
+    }
+}
+
+.works__container {
+    @include phones {
+        width: 100%;
+    }
 }
 
 .works__title {
@@ -33,6 +42,11 @@
         padding-left: 22px;
         font-size: 28px;
     }
+
+    @include phones {
+        text-align: center;
+        padding-left: 0;
+    }
 }
 
 .works__left {
@@ -56,6 +70,13 @@
         align-items: center;
         padding-top: 10px;
     }
+    @include phones {
+        margin-right: 5%;
+        margin-left: 5%;
+        align-items: center;
+        padding-top: 10px;
+        margin-bottom: 100px;
+    }
 }
 
 .works__text {
@@ -69,6 +90,10 @@
     @include tablets {
         text-align: center;
         align-items: center;
+    }
+    @include phones {
+        text-align: left;
+        align-items: flex-start;
     }
 }
 
@@ -89,6 +114,9 @@
         padding-top: 0;
         padding-left:0;
         max-width: 80%;
+    }
+    @include phones {
+        max-width: 95%;
     }
 }
 
@@ -111,6 +139,9 @@
     @include tablets {
         padding-left: 0;;
         font-size: 32px;
+    }
+    @include phones {
+        max-width: 95%;
     }
 
     & br {

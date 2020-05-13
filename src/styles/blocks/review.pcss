@@ -9,11 +9,18 @@
 .review-left {
     padding-right: 10px;
     padding-top: 10px;
+    @include phones {
+        display: none;
+    }
 }
 
 .review-right {
     padding-top: 10px;
     padding-left: 8px;
+    @include phones {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
 }
 
 .review__icon-quote {
@@ -62,6 +69,9 @@
     font-size: 18px;
     font-weight: 700;
     line-height: 48px;
+    @include phones {
+        line-height: 32px;
+    }
 }
 
 .review-author__desc {
@@ -77,11 +87,19 @@
         width: 75px;
         height: 75px;
     }
+    @include phones {
+        width: 60px;
+        height: 60px;
+        margin-left: 14px;
+    }
 }
 
 .review-author__right {
     padding-left: 30px;
     @include tablets {
         padding-left: 34px;
+    }
+    @include phones {
+        padding-left: 20px;
     }
 }

@@ -19,7 +19,7 @@ new Vue({
                 itemsToShow: 1,
                 itemsToSlide: 1,
                 breakpoints: {
-                    320: {
+                    321: {
                         itemsToShow: 2,
                         itemsToSlide: 2,
                     }

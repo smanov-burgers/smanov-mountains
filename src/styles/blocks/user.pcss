@@ -5,6 +5,9 @@
   @include tablets {
     max-width: 280px;
   }
+  @include phones {
+    max-width: initial;
+  }
 }
 
 .user__avatar {
@@ -17,6 +20,9 @@
     margin-left: 0;
     margin-right: 26px;
     margin-bottom: 0;
+  }
+  @include phones {
+    margin-right: 0;
   }
 }
 

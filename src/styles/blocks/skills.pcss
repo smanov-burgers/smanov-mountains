@@ -9,7 +9,6 @@
             padding-top: 42px;
         }
     }
-
 }
 
 .skills-row__title {
@@ -28,4 +27,14 @@
 .skills-row__list {
     width: 100%;
     display: flex;
+    @include phones {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+.skills-row__item {
+    @include phones {
+        width: 50%;
+    }
 }

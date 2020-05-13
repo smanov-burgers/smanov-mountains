@@ -11,6 +11,10 @@
   @include desktop {
     justify-content: flex-start;
   }
+  @include phones {
+    justify-content: center;
+    flex-direction: column;
+  }
 }
 
 .about__left {
@@ -20,6 +24,13 @@
   @include desktop {
     max-width: 480px;
     padding-right: 46px;
+  }
+
+  @include phones {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: initial;
+    width: initial;
   }
 }
 
@@ -35,6 +46,11 @@
   @include tablets {
     padding-left: 32px;
     padding-right: 0;
+  }
+  @include phones {
+    padding-left: 10%;
+    padding-top: 30px;
+    width: 100%;
   }
 }
 
@@ -61,6 +77,9 @@
   @include tablets {
     padding-top: 46px;
     min-height: 166px;
+  }
+  @include phones {
+    padding-left: 0;
   }
 }
 
@@ -89,6 +108,11 @@
 
   @include tablets {
     line-height: 28px;
+  }
+  @include phones {
+    padding-left: 0;
+    padding-top: 40px;
+    padding-bottom: 80px;
   }
 }
 
