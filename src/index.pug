@@ -102,9 +102,9 @@ html(lang="en")
                     +image("content/slider-stub.png", "slider__fillpic")
                     .slider__preview
                       ul.previews
-                        - for (var i = 0; i < 3; i++)
-                          li.previews__item
-                            img.previews__pic
+                        - for (var i = 1; i < 4; i++)
+                          li(class=`previews__item${i==3? " previews__item--selected" : ""}`)
+                            +image(`works/${i+1}.jpg`, `previews__pic`)
                     .slider__buttons
                         button.slider-button.slider-button--prev 
                           +icon('arrow-down', 'slider-button__icon')
