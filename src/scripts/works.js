@@ -59,8 +59,10 @@ new Vue({
   methods: {
     makeInfiniteLoopForIndex(value) {
       const worksAmountFromZero = this.works.length - 1;
-      if (value > worksAmountFromZero) this.currentIndex = 0;
-      if (value < 0) this.currentIndex = worksAmountFromZero;
+    //   if (value > worksAmountFromZero) this.currentIndex = 0;
+    //   if (value < 0) this.currentIndex = worksAmountFromZero;
+        if (value > worksAmountFromZero) this.currentIndex = worksAmountFromZero;
+        if (value < 0) this.currentIndex = 0;
     },
     handleSlide(direction) {
       switch (direction) {

@@ -9,18 +9,18 @@
     },
     {
       "id": 2,
-      "title": "Сайт школы образования",
-      "skills": "Html, Css, JavaScript",
+      "title": "Макет осень",
+      "skills": "Pug, Json, Storybook",
       "photo": "works/2.jpg",
       "link": "//yandex.ru",
-      "desc": "Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!"
+      "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     },
     {
       "id": 3,
       "title": "Сайт школы образования",
-      "skills": "Html, Css, JavaScript",
+      "skills": "Vue, Git, Cypress",
       "photo": "works/3.jpg",
       "link": "//rambler.ru",
-      "desc": "Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!"
+      "desc": "Съешь ещё этих мягких французских булок, да выпей же чаю"
     }
   ]
