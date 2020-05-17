@@ -1,5 +1,6 @@
 <template lang="pug">
   .admin-wrapper.main-bg
+    auth
     header.header
       headline
     tabs
@@ -31,6 +32,7 @@
 </template>
 
 <script>
+  import auth from "./components/auth/auth.vue";
   import headline from "./components/headline/headline.vue";
   import tabs from "./components/tabs/tabs.vue";
   import skillsCategory from "./components/skills-category/skills-category.vue";
@@ -40,6 +42,7 @@
   import reviewsList from "./components/reviews-list/reviews-list.vue";
   export default {
     components : {
+      auth,
       headline,
       tabs,
       skillsCategory,
