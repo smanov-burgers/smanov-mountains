@@ -1,55 +1,72 @@
 <template lang="pug">
-  .admin-wrapper
+  .admin-wrapper.main-bg
+    auth
     header.header
-      .header__left
-        .header__user
-          //- img(src=require(`images/content/user.jpg`) class=".header__user-icon")
-      .header__right
-        .header__user-name Владимир Астаханов
-        .header__page-title Панель администрированияя
-        .header__logout
-          a.logout-btn Выйти
-    nav.nav
-      - var menu = ["Обо мне", "Работы", "Отзывы"]
-      ul.nav__list
-        each item in menu
-          li.nav__item
-            a(href="").nav__link #{item}
+      headline
+    tabs
     .sections
       section.section.about
-        h1.section__title Блок «Обо мне»
-        a.btn-add.about__btn-add
+        .section__head
+          h1.page__title Блок «Обо мне»
+          a.about__btn-add 
+            .about__btn-add__icon
+              .btn-add
+            |Добавить группу
         ul.about__list
-          li.about__list-elem.skills-category
-            .about__list-row.skills-category__row
-              input.skills-category__input.skills-category__title(type='text' placeholder='Название новой группы' required='')
-              .skills-category__btns
-                a(href="").skills-category__btn
-                a(href="").skills-category__btn
-            .about__list-row.skills-category__row
-              table.skills-category__skill-list.skill
-                tr.skill__row
-                  td.skill__cell
-                    input.skill__input(type='text' placeholder='Git' required='')
-                  td.skill__cell
-                    label.input_mask--prc
-                      input.skill__input(type='text' placeholder='100' required='')
-                      | %
-                  td.skill__cell
-                    .skill__btns
-                      a(href="").skill__btn
-                      a(href="").skill__btn
-            .about__list-row.skills-category__row
-              input.skills-category__input.skills-category__new-title(type='text' placeholder='Новый навык' required='')
-              label.input_mask--prc
-                input.skills-category__input.skills-category__new-prc(type='text' placeholder='100' required='')
-                | %
-              a.btn-add.skills-category__btn-add
-            
-      section.works
-      section.reviews
+          li.about__list-elem
+            skills-category
+          li.about__list-elem
+            skills-category
+          li.about__list-elem
+            skills-category
+          li.about__list-elem
+            skills-category
+                      
+      section.section.works
+        works-editor
+        works-list
+
+      section.section.reviews
+        reviews-editor
+        reviews-list
 </template>
+
+<script>
+  import auth from "./components/auth/auth.vue";
+  import headline from "./components/headline/headline.vue";
+  import tabs from "./components/tabs/tabs.vue";
+  import skillsCategory from "./components/skills-category/skills-category.vue";
+  import worksEditor from "./components/works-editor/works-editor.vue";
+  import worksList from "./components/works-list/works-list.vue";
+  import reviewsEditor from "./components/reviews-editor/reviews-editor.vue";
+  import reviewsList from "./components/reviews-list/reviews-list.vue";
+  export default {
+    components : {
+      auth,
+      headline,
+      tabs,
+      skillsCategory,
+      worksEditor,
+      worksList,
+      reviewsEditor,
+      reviewsList
+    }
+  }
+</script>
+
 <style lang="postcss">
+  @import "./default.pcss";
+
+  .main-bg{
+    background: url(../images/bg/main-bg.png);
+    background-size: cover;
+    display: flex;
+    align-items: center;
+  }
+  .sections {
+    background-color: rgba(255, 255, 255, 0.9);
+    max-width: 1480px;
+  }
   .admin-wrapper {
     display: flex;
     flex-direction: column;
@@ -57,17 +74,85 @@
 
   .header {
     display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .logout-btn {
+      color: rgba(#fff, 0.7);
+      font-family: "Open Sans";
+      font-weight: 400;
+      font-size: 16px;
+      text-decoration: underline;
+  }
+
+  .about__btn-add {
+    display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    &__left {
+    margin-left: 50px;
+  }
+
+  .about__btn-add__icon {
+    width: 21px;
+    height: 21px;
+    margin-right: 10px;
+  }
+  .btn-add {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background:
+      linear-gradient(#fff,#fff),
+      linear-gradient(#fff,#fff),
+      linear-gradient(to right, #006aed 0%, #3f35cb 100%);
+    background-position:center;
+    background-size: 50% 10%, 10% 50%, cover; /*thickness = 2px, length = 50% (25px)*/
+    background-repeat:no-repeat;
+
+    border-radius: 50%;
+  }
+
+  .page__title {
+    color: #414c63;
+    font-family: "Open Sans";
+    font-size: 21px;
+    font-weight: 700;
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+
+  .section {
+    padding-left: 60px;
+    padding-right: 58px;
+    .section__head {
       display: flex;
-      justify-content: center;
       align-items: center;
-    }
-    &__right {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      justify-content: flex-start;
     }
   }
+
+  .about__list {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .about__list-elem {
+    display: flex;
+    flex: 1 1 45%;
+    justify-content: flex-start;
+    align-items: center;
+    &:nth-child(even) {
+      padding-left: 2%;
+    }
+    &:nth-child(odd) {
+      padding-right: 2%;
+    }
+  }
+
+  .skills-category {
+    display: flex;
+  }
+  
 </style>
