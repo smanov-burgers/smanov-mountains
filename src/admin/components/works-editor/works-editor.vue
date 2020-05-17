@@ -37,6 +37,7 @@
         display: flex;
         flex-direction: column;
         padding-left: 15px;
+        padding-right: 15px;
         background: #fff;
         box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
         margin-bottom: 32px;
@@ -97,7 +98,7 @@
         border:  none;
         width: 100%;
         color: #414c63;
-        font-family: "Open Sans - Semibold";
+        font-family: "Open Sans";
         font-size: 16px;
         font-weight: 400;
         line-height: 24px;

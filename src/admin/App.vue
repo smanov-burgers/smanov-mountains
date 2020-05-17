@@ -26,7 +26,8 @@
         works-list
 
       section.section.reviews
-        
+        reviews-editor
+        reviews-list
 </template>
 
 <script>
@@ -35,13 +36,17 @@
   import skillsCategory from "./components/skills-category/skills-category.vue";
   import worksEditor from "./components/works-editor/works-editor.vue";
   import worksList from "./components/works-list/works-list.vue";
+  import reviewsEditor from "./components/reviews-editor/reviews-editor.vue";
+  import reviewsList from "./components/reviews-list/reviews-list.vue";
   export default {
     components : {
       headline,
       tabs,
       skillsCategory,
       worksEditor,
-      worksList
+      worksList,
+      reviewsEditor,
+      reviewsList
     }
   }
 </script>
