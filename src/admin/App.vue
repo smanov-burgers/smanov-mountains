@@ -65,7 +65,6 @@
   }
   .sections {
     background-color: rgba(255, 255, 255, 0.9);
-    max-width: 1480px;
   }
   .admin-wrapper {
     display: flex;
