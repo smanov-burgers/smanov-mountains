@@ -1,5 +1,5 @@
 <template lang="pug">
-    .skills-category
+    form(action="/skills" method="POST").skills-category
         .skills-category__row
             input.skills-category__input.skills-category__title(type='text' placeholder='Название новой группы' required='')
             .skills-category__btns
@@ -43,6 +43,8 @@
 </template>
 
 <style lang="postcss" scoped>
+    @import "../../../styles/mixins.pcss";
+
     .skills-category {
         display: flex;
         width: 100%;
@@ -54,6 +56,9 @@
         min-height: 387px;
         background: #fff;
         padding-bottom: 30px;
+        @include phones {
+            margin-bottom: 10px;
+        }
     }
     .skills-category__skill-list {
         width: 100%;

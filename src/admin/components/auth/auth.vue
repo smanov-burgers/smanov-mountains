@@ -1,6 +1,6 @@
 <template lang="pug">
     .auth-overlay
-        .auth-form
+        form(action="/login" method="POST").auth-form
             a.auth__close
                 SvgIcon(className = "auth__close-icon", name = "remove")
             .auth__title Авторизация
@@ -21,6 +21,8 @@
 </template>
 
 <style lang="postcss" scoped>
+    @import "../../../styles/mixins.pcss";
+
     .auth {
         padding: 0;
     }
@@ -31,6 +33,7 @@
         height: 100vh;
         justify-content: center;
         align-items: center;
+        position: relative;
     }
     .auth-form {
         background: #fff;
@@ -41,6 +44,16 @@
         justify-content: center;
         align-items: center;
         position: relative;
+        @include phones {
+            display: flex;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+        }
     }
     .auth__close {
         position: absolute;
@@ -48,6 +61,10 @@
         right: 30px;
         width: 20px;
         height: 20px;
+        @include phones {
+            right: 35px;
+            top: 35px;
+        }
     }
     .auth__close-icon {
         height: 100%;
@@ -63,11 +80,18 @@
         line-height: 60px;
         margin-top: 60px;
         margin-bottom: 34px;
+        @include phones {
+            display: flex;
+            justify-content: center;
+        }
     }
     .auth__row {
         display: flex;
         justify-content: flex-start;
         padding: 0 13.5%;
+        @include phones {
+            padding: 0;
+        }
     }
     .auth__label {
         color: rgba(#414c63, 0.5);
@@ -122,6 +146,9 @@
         font-size: 18px;
         padding: 30px 120px;
         cursor: pointer;
+        @include phones {
+            padding: 30px 60px;
+        }
     }
 </style>
 

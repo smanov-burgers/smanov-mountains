@@ -56,6 +56,7 @@
 
 <style lang="postcss">
   @import "./default.pcss";
+  @import "../styles/mixins.pcss";
 
   .main-bg{
     background: url(../images/bg/main-bg.png);
@@ -90,6 +91,10 @@
     justify-content: center;
     align-items: center;
     margin-left: 50px;
+    @include phones {
+      margin-left: 0;
+      margin-bottom: 30px;
+    }
   }
 
   .about__btn-add__icon {
@@ -119,15 +124,37 @@
     font-weight: 700;
     margin-top: 60px;
     margin-bottom: 60px;
+    @include phones {
+      width: 100%;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
   }
 
   .section {
     padding-left: 60px;
     padding-right: 58px;
+
+    @include tablets {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+
+    @include phones {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
     .section__head {
       display: flex;
       align-items: center;
       justify-content: flex-start;
+
+      @include phones {
+        flex-wrap: wrap;
+        width: 100%;
+        padding-left: 20px;
+      }
     }
   }
 
@@ -147,6 +174,15 @@
     }
     &:nth-child(odd) {
       padding-right: 2%;
+    }
+    @include phones {
+      flex: 1 1 100%;
+      &:nth-child(even) {
+        padding-left: 0;
+      }
+      &:nth-child(odd) {
+        padding-right: 0;
+      }
     }
   }
 

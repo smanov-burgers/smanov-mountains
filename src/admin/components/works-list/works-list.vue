@@ -38,6 +38,8 @@
 </template>
 
 <style lang="postcss" scoped>
+    @import "../../../styles/mixins.pcss";
+
     .works-list__wrapper {
         width: 100%;
         display: flex;
@@ -57,6 +59,25 @@
         &:nth-child(3n) {
             margin-right: 0;
         }
+        @include tablets {
+            width: calc(100%/2-20px);
+            &:nth-child(3n) {
+                margin-right: 30px;
+            }
+            &:nth-child(2n) {
+                margin-right: 0;
+            }
+        }
+        @include phones {
+            width: 100%;
+            margin-right: 0;
+            &:nth-child(3n) {
+                margin-right: 0;
+            }
+            &:first-child {
+                min-height:110px;
+            }
+        }
     }
     .works-list__add-wrapper {
         background-image: linear-gradient(to right, #006aed 0%, #3f35cb 100%);
@@ -66,6 +87,11 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        @include phones {
+            flex-direction: row;
+            justify-content: flex-start;
+            padding-left: 10%;
+        }
     }
     .works-list__add-btn {
         position: relative;
@@ -85,6 +111,10 @@
             float: left;
             padding-top: 100%;
         }
+        @include phones {
+            width: 12%;
+            background-size: 50% 7%, 7% 50%, cover;
+        }
     }
 
     .works-list__add-text {
@@ -95,6 +125,11 @@
         font-weight: 700;
         width: 30%;
         text-align: center;
+        @include phones {
+            margin-top: 0;
+            width: 50%;
+            margin-left: 5%;
+        }
     }
     
     .work-preview {

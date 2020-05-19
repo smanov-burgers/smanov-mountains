@@ -1,7 +1,7 @@
 <template lang="pug">
     .works-editor
         h2.works-editor__title Редактирование Работы
-        form.works-editor__form
+        form(action="/works" method="POST").works-editor__form
             .works-editor__form-left
                 .works-editor__file-drop-area.file-drop__area
                     .file-drop__hint Перетащите или загрузите для загрузки изображения
@@ -19,7 +19,7 @@
                         textarea.works-editor__form-input.works-editor__form-textarea(placeholder='Введите описание' required='' rows="4")
                 .works-editor__form-row
                     label.works-editor__form-label Добавление тега
-                        input.works-editor__form-input(type='text' placeholder='Введите тег' required='')
+                        input.works-editor__form-input(type='text' placeholder='Введите тег')
                 .works-editor__form-row
                     .works-editor__tags
                         ul.tags
@@ -33,6 +33,8 @@
 </template>
 
 <style lang="postcss" scoped>
+    @import "../../../styles/mixins.pcss";
+
     .works-editor {
         display: flex;
         flex-direction: column;
@@ -41,6 +43,7 @@
         background: #fff;
         box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
         margin-bottom: 32px;
+        
     }
 
     .works-editor__title {
@@ -55,6 +58,17 @@
     }
     .works-editor__form {
         display: flex;
+        @include tablets {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-left: 80px;
+            padding-right: 80px;
+        }
+        @include phones {
+            padding-left: 0;
+            padding-right: 0;
+        }
     }
     .works-editor__form-left {
         flex: 1;
@@ -62,6 +76,9 @@
         width: 50%;
         padding: 30px;
         max-height: 400px;
+        @include tablets {
+            width: 100%;
+        }
     }
     .works-editor__form-right {
         flex: 1;
@@ -70,6 +87,12 @@
         flex-direction: column;
         padding-top: 30px;
         padding-right: 30px;
+        @include tablets {
+            width: 100%;
+        }
+        @include phones {
+            padding-left: 30px;
+        }
     }
 
     .works-editor__form-row {
@@ -81,6 +104,9 @@
         display: flex;
         padding-bottom: 30px;
         justify-content: flex-end;
+        @include tablets {
+            justify-content: center;
+        }
     }
 
     .works-editor__form-label {
@@ -148,6 +174,10 @@
         padding-bottom: 60px;
         padding-left: 30%;
         padding-right: 30%;
+        @include phones {
+            padding-left: 15%;
+            padding-right: 15%;
+        }
     }
     .file-drop__hint {
         opacity: 0.5;

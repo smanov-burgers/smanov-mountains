@@ -16,6 +16,8 @@
 </template>
 
 <style lang="postcss" scoped>
+    @import "../../../styles/mixins.pcss";
+
     .headline {
         display: flex;
         align-items: center;
@@ -68,6 +70,9 @@
 
         &__page-title {
             margin-left: 28px;
+            @include phones {
+                display: none;
+            }
         }
 
         &__logout {

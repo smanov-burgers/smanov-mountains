@@ -153,7 +153,7 @@ html(lang="en")
         section.section.contact.section--half.section--left
           .contact__title
             h2.section-title Связаться со мной
-          form#contact-form.contact__form
+          form(action="/contact" method="POST")#contact-form.contact__form
             .contact__form-row.contact__form-row--two
               label.contact__form-block
                 .contact__form-block-wrapper
