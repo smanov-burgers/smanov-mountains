@@ -1,0 +1,19 @@
+.previews {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    @include tablets {
+        display: none;
+    }
+}
+
+.previews__item {
+    &--selected {
+        border: 2px solid #dc9322;
+    }
+}
+
+.previews__pic {
+    // max-width: 178px;
+    // max-height: 100px;
+}
