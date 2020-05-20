@@ -1,27 +1,33 @@
 <template lang="pug">
     .auth-overlay
-        form(action="/login" method="POST").auth-form
+        form(@submit.prevent='login' method='POST').auth-form
             a.auth__close
                 SvgIcon(className = "auth__close-icon", name = "remove")
             .auth__title Авторизация
             .auth__row
-                label.auth__label
+                label.auth__label.error__wrapper
                     .auth__span Логин
                     .auth__input-wrapper
                         SvgIcon(className = "auth__icon", name = "user")
-                        input.auth__input(type='text' placeholder='Terminator_2000' required='')
+                        input.auth__input(v-model.trim="$v.userName.$model" type='text' placeholder='Terminator_2000' )
+                        .error(v-if="submitStatus === 'ERROR' && $v.userName.$error") Введите логин!
+                        
+                        
             .auth__row
                 label.auth__label
                     .auth__span Пароль
-                    .auth__input-wrapper
+                    .auth__input-wrapper.error__wrapper
                         SvgIcon(className = "auth__icon", name = "key")
-                        input.auth__input(type='password' placeholder='**********' required='')
+                        input.auth__input(v-model.trim="$v.userPassword.$model" type='password' placeholder='**********' )
+                        .error(v-if="submitStatus === 'ERROR' && $v.userPassword.$error") Введите пароль!
             .auth__btns
-                input.auth__btn(name='' type='submit' value='Отправить')
+                input.auth__btn(name='' :disabled="submitStatus === 'PENDING'" type='submit' value='Отправить')
 </template>
 
 <style lang="postcss" scoped>
+    
     @import "../../../styles/mixins.pcss";
+    @import "../../../styles/blocks/error.pcss";
 
     .auth {
         padding: 0;
@@ -101,6 +107,8 @@
         line-height: 30px;
         flex-direction: column;
         width: 100%;
+        
+        margin-bottom: 10px;
     }
     .auth__icon{
         width: 28px;
@@ -114,7 +122,6 @@
         display: flex;
         border-bottom: 1px solid #000;
         align-items: center;
-        margin-bottom: 10px;
         padding-bottom: 10px;
         padding-top: 10px;
     }
@@ -154,7 +161,36 @@
 
 <script>
 import SvgIcon from "../util/svg-icon.vue"
+import { required, minLength, between } from 'vuelidate/lib/validators'
 export default {
-    components: {SvgIcon}
+    components: {SvgIcon},
+    data() {
+        return {
+            userName: '',
+            userPassword: '',
+            submitStatus: null
+        }
+    },
+    validations: {
+        userName: {
+            required
+        },
+        userPassword: {
+            required
+        }
+    },
+    methods: {
+        login() {
+                this.$v.$touch()
+            if (this.$v.$invalid) {
+                this.submitStatus = 'ERROR'
+            } else {
+                this.submitStatus = 'PENDING'
+                setTimeout(() => {
+                this.submitStatus = 'OK'
+            }, 500)
+        }
+    }
+  }
 }
 </script>

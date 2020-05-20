@@ -1,0 +1,22 @@
+script(type="text/x-template")#contact
+    form(@submit.prevent='postContact' method='POST')#contact-form.contact__form
+        .contact__form-row.contact__form-row--two
+            label.contact__form-block.error__wrapper
+                .contact__form-block-wrapper
+                    .contact__form-label Введите ваше имя
+                        +icon('user', 'contact__form-icon')
+                        input.contact__form-input(v-model.trim="$v.contactName.$model" type='text' placeholder='Ковальчук Дмитрий' )
+                        .error(v-if="submitStatus === 'ERROR' && !$v.contactName.required") Введите ваше имя!
+            label.contact__form-block.error__wrapper
+                .contact__form-label Введите ваш email
+                    +icon('envelope', 'contact__form-icon')
+                    input.contact__form-input.phone-mask(v-model.trim="$v.contactEmail.$model" type='email' placeholder='loftschool@study.com' )
+                    .error(v-if="submitStatus === 'ERROR' && $v.contactEmail.$error") Введите корректный почтовый адрес!
+        .contact__form-row
+            label.contact__form-block.error__wrapper
+                .contact__form-label Сообщение к письму
+                    +icon('message', 'contact__form-icon')
+                    textarea.contact__form-input.contact__form-input_textarea(v-model.trim="$v.contactText.$model"  placeholder!='Требуется ваша помощь в создании сайта.\nИнтересуют сроки и цена вопроса')
+                    .error(v-if="submitStatus === 'ERROR' && !$v.contactText.required") Введите сообщение!
+        .contact__form-row
+            input#contact.contact__form-button(name='' type='submit' value='Отправить')

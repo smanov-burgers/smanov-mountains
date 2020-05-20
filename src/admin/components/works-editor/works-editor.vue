@@ -1,22 +1,26 @@
 <template lang="pug">
     .works-editor
         h2.works-editor__title Редактирование Работы
-        form(action="/works" method="POST").works-editor__form
+        form(@submit.prevent='postWork' method='POST').works-editor__form
             .works-editor__form-left
-                .works-editor__file-drop-area.file-drop__area
+                .works-editor__file-drop-area.file-drop__area.error__wrapper
                     .file-drop__hint Перетащите или загрузите для загрузки изображения
                     button(type="button").file-drop__fake-button Загрузить
-                    input(type="file").file-drop__input
+                    input(type="file" @change="workPicChanged($event)" accept="image/png, image/jpeg").file-drop__input
+                    .error(v-if="submitStatus === 'ERROR' && !$v.workPic.required") загрузите изображение!
             .works-editor__form-right
                 .works-editor__form-row
-                    label.works-editor__form-label Название
-                        input.works-editor__form-input(type='text' placeholder='Дизайн сайта для автосалона Porsche' required='')
+                    label.works-editor__form-label.error__wrapper Название
+                        input.works-editor__form-input(v-model.trim="$v.workName.$model" type='text' placeholder='Дизайн сайта для автосалона Porsche' )
+                        .error(v-if="submitStatus === 'ERROR' && !$v.workName.required") Введите имя автора!
                 .works-editor__form-row
-                    label.works-editor__form-label Ссылка
-                        input.works-editor__form-input(type='text' placeholder='https://www.porsche-pulkovo.ru' required='')
+                    label.works-editor__form-label.error__wrapper Ссылка
+                        input.works-editor__form-input(v-model.trim="$v.workLink.$model" type='text' placeholder='https://www.porsche-pulkovo.ru')
+                        .error(v-if="submitStatus === 'ERROR' && !$v.workLink.required") Введите ссылку!
                 .works-editor__form-row
-                    label.works-editor__form-label Описание
-                        textarea.works-editor__form-input.works-editor__form-textarea(placeholder='Введите описание' required='' rows="4")
+                    label.works-editor__form-label.error__wrapper Описание
+                        textarea.works-editor__form-input.works-editor__form-textarea(v-model.trim="$v.workDesc.$model" placeholder='Введите описание' rows="4")
+                        .error(v-if="submitStatus === 'ERROR' && !$v.workDesc.required") Введите описание!
                 .works-editor__form-row
                     label.works-editor__form-label Добавление тега
                         input.works-editor__form-input(type='text' placeholder='Введите тег')
@@ -34,6 +38,7 @@
 
 <style lang="postcss" scoped>
     @import "../../../styles/mixins.pcss";
+    @import "../../../styles/blocks/error.pcss";
 
     .works-editor {
         display: flex;
@@ -256,7 +261,52 @@
 
 <script>
 import SvgIcon from "../util/svg-icon.vue"
+import { required, minLength, between } from 'vuelidate/lib/validators'
+
 export default {
-    components: {SvgIcon}
+    components: {SvgIcon},
+    data() {
+        return {
+            workName: '',
+            workLink: '',
+            workDesc: '',
+            workPic: '',
+            submitStatus: null
+        }
+    },
+    validations: {
+        workName: {
+            required
+        },
+        workLink: {
+            required
+        },
+        workDesc: {
+            required
+        },
+        workPic: {
+            required
+        }
+    },
+    methods: {
+        postWork() {
+            console.log('posting review');
+
+            this.$v.$touch()
+            if (this.$v.$invalid) {
+                this.submitStatus = 'ERROR'
+            } else {
+                this.submitStatus = 'PENDING'
+                setTimeout(() => {this.submitStatus = 'OK'}, 500);
+            }
+        },
+        workPicChanged() {
+            var files = event.target.files || event.dataTransfer.files;
+            if (!files.length) {
+                return;
+            }
+            this.workPic = files[0];
+        }
+  }
 }
 </script>
