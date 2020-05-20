@@ -7,7 +7,7 @@
                     .reviews-editor__avatar-wrapper
                         SvgIcon(className = "reviews-editor__avatar-icon", name = "user")
                     a.reviews-editor__avatar-btn Добавить фото
-                    input(type="file" @change="reviewPicChanged($event)" accept="image/png, image/jpeg").file-drop__input
+                    input(type="file" @change="reviewPicChanged($event)" accept="image/png, image/jpeg").reviews-editor__input
                     .error(v-if="submitStatus === 'ERROR' && !$v.reviewPic.required") загрузите изображение!
             .reviews-editor__form-right
                 .reviews-editor__form-row
@@ -192,7 +192,9 @@
         line-height: 33.89px;
         margin-top: 20px;
     }
-
+    .reviews-editor__input {
+        display: none;
+    }
     
 </style>
 
