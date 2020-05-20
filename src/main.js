@@ -8,3 +8,4 @@ import "./scripts/parallax-mountains";
 import "./scripts/reviews";
 import "./scripts/works";
 import "./scripts/menu";
+import "./scripts/contact";
