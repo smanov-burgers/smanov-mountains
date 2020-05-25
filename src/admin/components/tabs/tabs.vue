@@ -1,12 +1,12 @@
 <template lang="pug">
     .tabs
       ul.tabs__list
-        li.tabs__item.tabs__item--active
-          a(href="").tabs__link Обо мне
-        li.tabs__item
-          a(href="").tabs__link Работы
-        li.tabs__item
-          a(href="").tabs__link Отзывы
+        li.tabs__item(v-for="tab in tabs")
+          router-link(
+            :data-text="tab.title" 
+            :to="tab.href"
+            exact-active-class="tabs__item--active"
+          ).tabs__link {{tab.title}}
 </template>
 
 <style lang="postcss" scoped>
@@ -46,5 +46,14 @@
 
 <script>
 export default {
-}
+  data() {
+    return {
+      tabs: [
+        { title: "Обо мне", href: "/" },
+        { title: "Отзывы", href: "/reviews" },
+        { title: "Работы", href: "/works" }
+      ]
+    };
+  }
+};
 </script>

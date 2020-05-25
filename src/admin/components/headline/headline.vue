@@ -7,7 +7,7 @@
         .headline__user-name Владимир Астаханов
         .headline__page-title Панель администрированияя
         .headline__logout
-            a(href="").logout-btn Выйти
+            a(@click.prevent='logout').logout-btn Выйти
     //- .headline-component
     //-     .content
     //-         slot
@@ -82,7 +82,38 @@
 </style>
 
 <script>
+import $axios from "../../requests";
+import SvgIcon from "../util/svg-icon.vue"
+import store from "../../store";
+
 export default {
-    props: ["username", "userpic"]
+    components: {SvgIcon},
+    props: ["username", "userpic"],
+    data() {
+        return {
+            submitStatus: null
+        }
+    },
+    methods: {
+        async logout() {
+            try {
+                console.log($axios.defaults.headers);
+                
+                const response = await $axios.post("/logout"); 
+
+                localStorage.removeItem("token");
+
+                store.dispatch('user/logout');
+
+                delete $axios.defaults.headers;
+
+                this.$router.push("/login");
+                
+            } catch (error) {
+                console.log(error);
+            }
+            
+        }
+    }
 }
 </script>

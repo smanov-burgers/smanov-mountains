@@ -153,27 +153,28 @@ html(lang="en")
         section.section.contact.section--half.section--left
           .contact__title
             h2.section-title Связаться со мной
-          form(action="/contact" method="POST")#contact-form.contact__form
-            .contact__form-row.contact__form-row--two
-              label.contact__form-block
-                .contact__form-block-wrapper
-                  .contact__form-label Введите ваше имя
-                  +icon('user', 'contact__form-icon')
-                  input.contact__form-input(name='name' type='text' placeholder='Ковальчук Дмитрий' required='')
+          #contact-component
+          //- form(action="/contact" method="POST")#contact-form.contact__form
+          //-   .contact__form-row.contact__form-row--two
+          //-     label.contact__form-block
+          //-       .contact__form-block-wrapper
+          //-         .contact__form-label Введите ваше имя
+          //-         +icon('user', 'contact__form-icon')
+          //-         input.contact__form-input(name='name' type='text' placeholder='Ковальчук Дмитрий' required='')
 
-              label.contact__form-block
-                .contact__form-label Введите ваш email
-                +icon('envelope', 'contact__form-icon')
-                input.contact__form-input.phone-mask(name='email' type='email' placeholder='loftschool@study.com' required='')
+          //-     label.contact__form-block
+          //-       .contact__form-label Введите ваш email
+          //-       +icon('envelope', 'contact__form-icon')
+          //-       input.contact__form-input.phone-mask(name='email' type='email' placeholder='loftschool@study.com' required='')
 
-            .contact__form-row
-              label.contact__form-block
-                .contact__form-label Сообщение к письму
-                +icon('message', 'contact__form-icon')
-                textarea.contact__form-input.contact__form-input_textarea(name='comment' placeholder!='Требуется ваша помощь в создании сайта.\nИнтересуют сроки и цена вопроса' required='')
+          //-   .contact__form-row
+          //-     label.contact__form-block
+          //-       .contact__form-label Сообщение к письму
+          //-       +icon('message', 'contact__form-icon')
+          //-       textarea.contact__form-input.contact__form-input_textarea(name='comment' placeholder!='Требуется ваша помощь в создании сайта.\nИнтересуют сроки и цена вопроса' required='')
       
-            .contact__form-row
-              input#contact.contact__form-button(name='' type='submit' value='Отправить')
+          //-   .contact__form-row
+          //-     input#contact.contact__form-button(name='' type='submit' value='Отправить')
         section.footer
           .footer__left
             .footer__copyright © 2019

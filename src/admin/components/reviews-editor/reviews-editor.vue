@@ -1,28 +1,34 @@
 <template lang="pug">
     .reviews-editor
         h2.reviews-editor__title Новый отзыв
-        form(action="/login" method="POST").reviews-editor__form
+        form(@submit.prevent='postReview' method='POST').reviews-editor__form
             .reviews-editor__form-left
-                .reviews-editor__avatar
+                .reviews-editor__avatar.error__wrapper
                     .reviews-editor__avatar-wrapper
                         SvgIcon(className = "reviews-editor__avatar-icon", name = "user")
                     a.reviews-editor__avatar-btn Добавить фото
+                    input(type="file" @change="reviewPicChanged($event)" accept="image/png, image/jpeg").reviews-editor__input
+                    .error(v-if="submitStatus === 'ERROR' && !$v.reviewPic.required") загрузите изображение!
             .reviews-editor__form-right
                 .reviews-editor__form-row
-                    label.reviews-editor__form-label Имя автора
-                        input.reviews-editor__form-input(type='text' placeholder='Ковальчук Дмитрий' required='')
-                    label.reviews-editor__form-label Титул автора
-                        input.reviews-editor__form-input(type='text' placeholder='Основатель Loftschool' required='')
+                    label.reviews-editor__form-label.error__wrapper Имя автора
+                        input.reviews-editor__form-input(v-model.trim="$v.reviewName.$model"  type='text' placeholder='Ковальчук Дмитрий')
+                        .error(v-if="submitStatus === 'ERROR' && !$v.reviewName.required") Введите имя автора!
+                    label.reviews-editor__form-label.error__wrapper Титул автора
+                        input.reviews-editor__form-input(v-model.trim="$v.reviewTitle.$model" type='text' placeholder='Основатель Loftschool' )
+                        .error(v-if="submitStatus === 'ERROR' && !$v.reviewTitle.required") Введите титул автора!
                 .reviews-editor__form-row
-                    label.reviews-editor__form-label Отзыв
-                        textarea.reviews-editor__form-input.reviews-editor__form-textarea(placeholder='Введите отзыв' required='' rows="4")
+                    label.reviews-editor__form-label.error__wrapper Отзыв
+                        textarea.reviews-editor__form-input.reviews-editor__form-textarea(v-model.trim="$v.reviewText.$model" placeholder='Введите отзыв' rows="4")
+                        .error(v-if="submitStatus === 'ERROR' && !$v.reviewText.required") Введите отзыв!
                 .reviews-editor__form-btns
                     input.reviews-editor__form-btn.btn-cancel(name='' type='reset' value='Отмена')
-                    input.reviews-editor__form-btn.btn-save(name='' type='submit' value='Сохранить')
+                    input.reviews-editor__form-btn.btn-save(name='' :disabled="submitStatus === 'PENDING'" type='submit' value='Сохранить')
 </template>
 
 <style lang="postcss" scoped>
     @import "../../../styles/mixins.pcss";
+    @import "../../../styles/blocks/error.pcss";
 
     .reviews-editor {
         display: flex;
@@ -186,13 +192,59 @@
         line-height: 33.89px;
         margin-top: 20px;
     }
-
+    .reviews-editor__input {
+        display: none;
+    }
     
 </style>
 
 <script>
 import SvgIcon from "../util/svg-icon.vue"
+import { required, minLength, between } from 'vuelidate/lib/validators'
+
 export default {
-    components: {SvgIcon}
+    components: {SvgIcon},
+    data() {
+        return {
+            reviewName: '',
+            reviewTitle: '',
+            reviewText: '',
+            reviewPic: '',
+            submitStatus: null
+        }
+    },
+    validations: {
+        reviewName: {
+            required
+        },
+        reviewTitle: {
+            required
+        },
+        reviewText: {
+            required
+        },
+        reviewPic: {
+            required
+        }
+    },
+    methods: {
+        postReview() {
+            console.log('posting review');
+                this.$v.$touch()
+            if (this.$v.$invalid) {
+                this.submitStatus = 'ERROR'
+            } else {
+                this.submitStatus = 'PENDING'
+                setTimeout(() => {this.submitStatus = 'OK'}, 500)
+            }
+        },
+        reviewPicChanged() {
+            var files = event.target.files || event.dataTransfer.files;
+            if (!files.length) {
+                return;
+            }
+            this.workPic = files[0];
+        }
+    }
 }
 </script>
