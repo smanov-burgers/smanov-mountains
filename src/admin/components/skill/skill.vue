@@ -17,7 +17,7 @@
                 input.skill__input.skill__input--active.input_mask--prc(type='text' placeholder='0' required='' v-model="editedSkill.percent")
         td.skill__cell
             a(@click.prevent="editExistedSkill").skill__btn
-                SvgIcon( className = "skill__btn-icon", name = "tick")
+                SvgIcon( className = "skill__btn-icon", name = "tick") 
             a(@click.prevent="editmode = false").skill__btn
                 SvgIcon( className = "skill__btn-icon", name = "remove") 
         
