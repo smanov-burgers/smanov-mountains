@@ -4,15 +4,10 @@
         .headline__user
           img(src="~images/content/user.jpg").headline__user-icon
       .headline__right
-        .headline__user-name Владимир Астаханов
+        .headline__user-name {{currentUser.name}}
         .headline__page-title Панель администрированияя
         .headline__logout
             a(@click.prevent='logout').logout-btn Выйти
-    //- .headline-component
-    //-     .content
-    //-         slot
-    //-         .desc Панель Администрирования       
-    //-         a(href="").logout-btn Выйти 
 </template>
 
 <style lang="postcss" scoped>
@@ -92,6 +87,11 @@ export default {
     data() {
         return {
             submitStatus: null
+        }
+    },
+    computed: {
+    currentUser() {
+            return this.$store.state.user.user;
         }
     },
     methods: {

@@ -2,19 +2,16 @@
   section.section.skills
     .section__head
       h1.page__title Блок «Обо мне»
-      a.skills__btn-add 
+      a.skills__btn-add(@click.prevent="pushNewCategory")
           .skills__btn-add__icon
               .btn-add
           |Добавить группу
     ul.skills__list
-      li.skills__list-elem
-          skills-category
-      li.skills__list-elem
-          skills-category
-      li.skills__list-elem
-          skills-category
-      li.skills__list-elem
-          skills-category
+      li(v-for="cat in categories" :key="cat.id").skills__list-elem
+        skills-category(
+          :category="cat"
+        )
+      
 </template>
 
 <script>
@@ -36,10 +33,10 @@
       this.fetchCategories();
     },
     methods: {
-      ...mapActions("categories", ["addCategory", "fetchCategories"]),
-      async addNewCategory() {
+      ...mapActions("categories", ["insertNewCategory", "fetchCategories"]),
+      async pushNewCategory() {
         try {
-          await this.addCategory(this.title);
+          await this.insertNewCategory();
         } catch (error) {
           alert(error.message);
         }
@@ -99,7 +96,7 @@
     flex: 1 1 45%;
     justify-content: flex-start;
     align-items: center;
-
+    max-width: 50%;
     &:nth-child(even) {
         padding-left: 2%;
     }
@@ -110,7 +107,7 @@
 
     @include phones {
         flex: 1 1 100%;
-
+        max-width: 100%;
         &:nth-child(even) {
             padding-left: 0;
         }
