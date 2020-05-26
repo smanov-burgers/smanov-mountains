@@ -1,45 +1,34 @@
 <template lang="pug">
     form(action="/skills" method="POST").skills-category
         .skills-category__row
-            input.skills-category__input.skills-category__title(type='text' placeholder='Название новой группы' required='')
-            .skills-category__btns
-                a(href="").skills-category__btn
+            input(v-if="isInEditMode === true || category.id < 0" v-model="category.category" type='text' placeholder='Название новой группы' required='').skills-category__input.skills-category__title.skills-category__input--edit
+            span(v-else).skills-category__input.skills-category__title {{category.category}}
+            .skills-category__btns(v-if="isInEditMode === true")
+                a(@click.prevent='renameExistingCategory').skills-category__btn
                     SvgIcon(className = "skills-category__btn-icon skills-category__btn-icon--green", name = "tick")
-                a(href="").skills-category__btn
+                a(@click.prevent='isInEditMode=false').skills-category__btn
+                    SvgIcon(className = "skills-category__btn-icon skills-category__btn-icon--red", name = "trash")
+            .skills-category__btns(v-if="category.id < 0")
+                pre {{category.id}}
+                a(@click.prevent='saveNewCategory').skills-category__btn
+                    SvgIcon(className = "skills-category__btn-icon skills-category__btn-icon--green", name = "tick")
+                a(@click.prevent='deleteNewCategory').skills-category__btn
+                    SvgIcon(className = "skills-category__btn-icon skills-category__btn-icon--red", name = "trash")
+            .skills-category__btns(v-if="(category.id >= 0 && !isInEditMode)")
+                a(@click.prevent='isInEditMode=true').skills-category__btn
+                    SvgIcon(className = "skills-category__btn-icon skills-category__btn-icon--blue", name = "pencil")
+                a(@click.prevent='deleteExistingCategory').skills-category__btn
                     SvgIcon(className = "skills-category__btn-icon skills-category__btn-icon--red", name = "remove")
-        .skills-category__row
+        .skills-category__row(v-show="category.hasOwnProperty('id') && category.id > 0")
             table.skills-category__skill-list.skill
-                tr.skill__row
-                    td.skill__cell
-                            input.skill__input(type='text' placeholder='Git' required='')
-                    td.skill__cell
-                        .input--prc-wrapper
-                            input.skill__input.input_mask--prc(type='text' placeholder='100' required='')
-                    td.skill__cell.skill__cell--pull-right
-                        .skill__btns
-                            a(href="").skill__btn
-                                SvgIcon(className = "skill__btn-icon", name = "pencil")
-                            a(href="").skill__btn
-                                SvgIcon(className = "skill__btn-icon", name = "trash")
-
-                tr.skill__row
-                    td.skill__cell
-                            input.skill__input(type='text' placeholder='Git' required='')
-                    td.skill__cell
-                        .input--prc-wrapper
-                            input.skill__input.input_mask--prc(type='text' placeholder='100' required='')
-                    td.skill__cell.skill__cell--pull-right
-                        .skill__btns
-                            a(href="").skill__btn
-                                SvgIcon(className = "skill__btn-icon", name = "pencil")
-                            a(href="").skill__btn
-                                SvgIcon(className = "skill__btn-icon", name = "trash")
-        .skills-category__row
-            input.skills-category__input.skills-category__new-title(type='text' placeholder='Новый навык' required='')
+                skill(v-for="skl in category.skills" :key="skl.id" :skill="skl")
+        .skills-category__row(v-show="category.hasOwnProperty('id') && category.id > 0")
+            input.skills-category__input.skills-category__new-title(v-model="skill.title" type='text' placeholder='Новый навык' required='')
             .input--prc-wrapper.skills-category__new-prc-wrapper
-                input.skills-category__input.skills-category__new-prc(type='text' placeholder='100' required='')
+                input.skills-category__input.skills-category__new-prc(v-model="skill.percent" type='text' placeholder='100' required='')
             .skills-category__btn-add
-                a.btn-add.
+                //- a.btn-add
+                a(@click.prevent='addNewSkill' :disabled="loading").btn-add
 </template>
 
 <style lang="postcss" scoped>
@@ -66,7 +55,7 @@
     .skills-category__row {
         display: flex;
         width: 100%;
-        padding-left: 30px;
+        padding-left: 20px;
         padding-right: 20px;
         padding-top: 14px;
         padding-bottom: 14px;
@@ -92,7 +81,7 @@
     }
     .skills-category__input{
         border: none;
-        border-bottom: 1px solid #000;
+        border-bottom: 1px solid transparent;
         color: #414c63;
         font-family: "Open Sans";
         font-weight: bold;
@@ -100,6 +89,9 @@
         line-height: 34px;
         outline: none;
         width: 60%;
+        &--edit {
+            border-bottom: 1px solid #000;
+        }
         &:placeholder {
             color: rgba(#414c63, 0.51);
         }
@@ -122,6 +114,10 @@
 
         &--green {
             fill: #00d70a;
+        }
+        
+        &--blue {
+            fill: #383bcf;
         }
 
         &--red {
@@ -152,7 +148,7 @@
 
     .skill__input {
         border: none;
-        color: rgba(#414c63);
+        color: #414c63;
         font-family: "Open Sans";
         font-weight: normal;
         font-size: 16px;
@@ -213,11 +209,113 @@
         margin-left: 40px;
     }
 
+    .btn-add {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        background:
+        linear-gradient(#fff,#fff),
+        linear-gradient(#fff,#fff),
+        linear-gradient(to right, #006aed 0%, #3f35cb 100%);
+        background-position:center;
+        background-size: 50% 10%, 10% 50%, cover; /*thickness = 2px, length = 50% (25px)*/
+        background-repeat:no-repeat;
+
+        border-radius: 50%;
+  }
+
 </style>
 
 <script>
 import SvgIcon from "../util/svg-icon.vue"
+import { mapActions } from "vuex";
 export default {
-    components: {SvgIcon}
-}
+  components: {
+    skill: () => import("../skill"),
+    SvgIcon
+  },
+  data() {
+    return {
+      loading: false,
+      isInEditMode: false,
+      skill: {
+        title: "",
+        percent: 0,
+        category: this.category.id
+      }
+    };
+  },
+  props: {
+    category: {
+      type: Object,
+      default: () => {},
+      required: true
+    }
+  },
+  methods: {
+    ...mapActions("skills", ["addSkill"]),
+    ...mapActions("categories", ["deleteCategory", "editCategory", "appendNewCategory"]),
+    async addNewSkill() {
+      this.loading = true;
+      try {
+        console.log("addNewSkill");
+        
+        await this.addSkill(this.skill);
+
+        this.skill.title = "";
+        this.skill.percent = "";
+      } catch (error) {
+        // handling error
+      } finally {
+        this.loading = false;
+      }
+    },
+    async deleteExistingCategory() {
+      this.loading = true;
+      try {
+        await this.deleteCategory(this.category);
+
+      } catch (error) {
+        // handling error
+      } finally {
+        this.loading = false;
+      }
+    },
+    async renameExistingCategory() {
+      this.loading = true;
+      try {
+        await this.editCategory(this.category);
+
+      } catch (error) {
+        // handling error
+      } finally {
+        this.loading = false;
+        this.isInEditMode = false;
+      }
+    },
+    async saveNewCategory() {
+      this.loading = true;
+      
+      try {
+        await this.appendNewCategory(this.category.category);
+      } catch (error) {
+        // handling error
+      } finally {
+        this.loading = false;
+      }
+    },
+    async deleteNewCategory() {
+      this.loading = true;
+      try {
+        await this.deleteCategory(this.category)
+
+      } catch (error) {
+        // handling error
+      } finally {
+        this.loading = false;
+        this.isInEditMode = false;
+      }
+    }
+  }
+};
 </script>

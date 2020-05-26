@@ -48,7 +48,6 @@
         background: #fff;
         box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
         margin-bottom: 32px;
-        
     }
 
     .works-editor__title {
