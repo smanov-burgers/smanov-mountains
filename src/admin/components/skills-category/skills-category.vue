@@ -9,7 +9,6 @@
                 a(@click.prevent='isInEditMode=false').skills-category__btn
                     SvgIcon(className = "skills-category__btn-icon skills-category__btn-icon--red", name = "trash")
             .skills-category__btns(v-if="category.id < 0")
-                pre {{category.id}}
                 a(@click.prevent='saveNewCategory').skills-category__btn
                     SvgIcon(className = "skills-category__btn-icon skills-category__btn-icon--green", name = "tick")
                 a(@click.prevent='deleteNewCategory').skills-category__btn

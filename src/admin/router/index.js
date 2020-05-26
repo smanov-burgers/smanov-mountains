@@ -10,7 +10,7 @@ const guard = axios.create({
 
 Vue.use(VueRouter);
 
-const router = new VueRouter({ routes });
+const router = new VueRouter({  mode: 'history', routes });
 
 router.beforeEach(async (to, from, next) => {
   const isPublicRoute = to.matched.some(route => route.meta.public);
