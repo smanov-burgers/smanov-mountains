@@ -1,9 +1,9 @@
 <template lang="pug">
-  section.section.works
+  section.section.reviews
     .section__head
       h1.page__title Блок «Обо мне»
-    reviews-editor
-    reviews-list
+    reviews-editor(v-if="editorVisible" :selectedReview="currentReview")
+    reviews-list(:reviewsList="reviews")
 </template>
 
 <script>
@@ -15,25 +15,19 @@
   export default {
     components: {SvgIcon, reviewsEditor, reviewsList},
     data: () => ({
-      title: ""
     }),
     computed : {
-      ...mapState("categories", {
-        categories: state => state.categories
+      ...mapState("reviews", {
+        reviews: state => state.reviews,
+        currentReview: state => state.currentReview,
+        editorVisible: state => state.editorVisible,
       })
     },
     created() {
-      this.fetchCategories();
+      this.fetchReviews();
     },
     methods: {
-      ...mapActions("categories", ["addCategory", "fetchCategories"]),
-      async addNewCategory() {
-        try {
-          await this.addCategory(this.title);
-        } catch (error) {
-          alert(error.message);
-        }
-      }
+      ...mapActions("reviews", ["fetchReviews"])
     }
   };
 </script>

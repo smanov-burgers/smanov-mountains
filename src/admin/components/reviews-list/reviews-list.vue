@@ -2,27 +2,11 @@
     .reviews-list__wrapper
         ul.reviews-list
             li.reviews-list__item
-                .reviews-list__add-wrapper
+                a(@click.prevent="newReview").reviews-list__add-wrapper
                     .reviews-list__add-btn
                     .reviews-list__add-text Добавить отзыв
-            li.reviews-list__item
-                .reviews-list__work.work-review
-                    //- .work-review__pic-wrapper
-                    .work-review__reviwer
-                        .work-review__reviwer-avatar
-                            img(src="~images/content/reviewer1.png").work-review__reviwer-pic
-                        .work-review__reviwer-desc
-                            .work-review__reviwer-name Владимир Сабанцев
-                            .work-review__reviwer-title Преподаватель
-                    .work-review__content
-                        .work-review__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
-                        .work-review__btns 
-                            a(href="").work-review__btn Править
-                                SvgIcon(className = "work-review__btn-icon work-review__btn-icon--blue", name = "pencil")
-                            a(href="").work-review__btn Удалить
-                                SvgIcon(className = "work-review__btn-icon work-review__btn-icon--red", name = "remove")
-            
-
+            li(v-for="review in reviewsList" :key="review.id").reviews-list__item
+                review(:review="review")
 
 </template>
 
@@ -119,120 +103,37 @@
             width: 50%;
             margin-left: 5%;
         }
-    }
+    }   
     
-    .work-review {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        padding: 30px;
-    }
-
-    .work-review__reviwer {
-        position: relative;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        border-bottom: 1px solid rgba(#1f232d, 0.15);
-        padding-bottom: 30px;
-    }
-    
-    .work-review__reviwer-avatar {
-        width: 50px;
-        height: 50px;
-        margin-right: 20px;
-    }
-
-    .work-review__reviwer-pic {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-    }
-
-    .work-review__reviwer-name{
-        color: #414c63;
-        font-family: "Open Sans";
-        font-size: 18px;
-        font-weight: 700;
-    }
-
-    .work-review__reviwer-title {
-        color: rgba(#414c63, 0.5);
-        font-family: "Open Sans";
-        font-size: 16px;
-        font-weight: 700;
-        line-height: 30px;
-    }
-
-    .work-review__pic {
-        display: block;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        min-height: 100%;
-        min-width: 100%;
-        transform: translate(-50%, -50%);
-    }
-
-    .work-review__content {
-        height: auto;
-        position: relative;
-        height: 80%;
-    }
-
-    .work-review__text{
-        color: rgba(#414c63, 0.7);
-        font-family: "Open Sans";
-        font-size: 16px;
-        font-weight: 700;
-        line-height: 30px;
-        height: 150px;
-        overflow: hidden;
-        min-height: 75%;
-        margin-top: 30px;
-    }
-    .work-review__link {
-        margin-top: 30px;
-        color: #383bcf;
-        font-family: "Open Sans";
-        font-size: 16px;
-        font-weight: 700;
-        line-height: 30px;
-    }
-    .work-review__btns {
-        margin-top: 36px;
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        margin-bottom: 10px;
-    }
-    .work-review__btn {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-        color: rgba(#414c63, 0.5);
-        font-family: "Open Sans";
-        font-size: 16px;
-        font-weight: 700;
-        line-height: 30px;
-    }
-    .work-review__btn-icon {
-        width: 17px;
-        height: 17px;
-        margin-left: 10px;
-        &--blue {
-            fill: #383bcf;
-        }
-        &--red {
-            fill: #c92e2e;
-        }
-    }
     
 </style>
 
 <script>
 import SvgIcon from "../util/svg-icon.vue"
-export default {
-    components: {SvgIcon}
-}
+    import review from "../review/review.vue"
+    import { mapActions } from "vuex";
+
+    export default {
+    data() {
+        return {
+            submitStatus: null
+        }
+    },
+    components: {SvgIcon, review},
+    props: {
+        reviewsList: {
+        type: Array,
+        default: () => [],
+        required: true
+        }
+    },
+    methods: {
+        ...mapActions("reviews", ["openNewReviewInEditor"]),
+        async newReview() {
+            try {
+                await this.openNewReviewInEditor();
+            } catch (error) {}
+        }
+    }
+};
 </script>

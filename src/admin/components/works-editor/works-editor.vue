@@ -1,7 +1,7 @@
 <template lang="pug">
     .works-editor
         //- pre {{selectedWork}}
-        h2.works-editor__title Редактирование Работы
+        h2.works-editor__title {{editorTitle}}
         form(@submit.prevent='postWork' method='POST').works-editor__form
             .works-editor__form-left
                 .works-editor__file-drop-area.file-drop__area.error__wrapper(@drop.prevent='photoChanged' @dragover.prevent='')
@@ -290,7 +290,11 @@ export default {
             var t = this.selectedWork.techs.split(',')
             if (t[0] == '' && t.length == 1) return [];
             return t;
-      }
+        },
+        editorTitle: function () {
+            return this.selectedWork.id < 0 ? 'Добавление Работы' : 'Редактирование Работы';
+        }
+      
     },
     props: {
         selectedWork: {

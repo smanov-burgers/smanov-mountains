@@ -29,14 +29,7 @@
       this.fetchWorks();
     },
     methods: {
-      ...mapActions("works", ["fetchWorks"]),
-      async pushNewCategory() {
-        try {
-          await this.fetchWorks();
-        } catch (error) {
-          alert(error.message);
-        }
-      }
+      ...mapActions("works", ["fetchWorks"])
     }
   };
 </script>
