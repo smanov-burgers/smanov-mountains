@@ -1,38 +1,39 @@
 <template lang="pug">
     .works-editor
+        //- pre {{selectedWork}}
         h2.works-editor__title Редактирование Работы
         form(@submit.prevent='postWork' method='POST').works-editor__form
             .works-editor__form-left
-                .works-editor__file-drop-area.file-drop__area.error__wrapper
+                .works-editor__file-drop-area.file-drop__area.error__wrapper(@drop.prevent='photoChanged' @dragover.prevent='')
+                    img(v-if="renderedPhoto.length > 0" :src="renderedPhoto").file-drop__background-pic
                     .file-drop__hint Перетащите или загрузите для загрузки изображения
-                    button(type="button").file-drop__fake-button Загрузить
-                    input(type="file" @change="workPicChanged($event)" accept="image/png, image/jpeg").file-drop__input
-                    .error(v-if="submitStatus === 'ERROR' && !$v.workPic.required") загрузите изображение!
+                    button(@click="$refs.file.click()" type="button").file-drop__fake-button Загрузить
+                    input(@change="photoChanged($event)" ref="file" type="file" accept="image/png, image/jpeg").file-drop__input
+                    .error(v-if="submitStatus === 'ERROR' && !$v.selectedWork.photo.required") загрузите изображение!
             .works-editor__form-right
                 .works-editor__form-row
                     label.works-editor__form-label.error__wrapper Название
-                        input.works-editor__form-input(v-model.trim="$v.workName.$model" type='text' placeholder='Дизайн сайта для автосалона Porsche' )
-                        .error(v-if="submitStatus === 'ERROR' && !$v.workName.required") Введите имя автора!
+                        input.works-editor__form-input(v-model.trim="selectedWork.title" type='text' placeholder='Введите название' )
+                        .error(v-if="submitStatus === 'ERROR' && !$v.selectedWork.title.required") Введите название!
                 .works-editor__form-row
                     label.works-editor__form-label.error__wrapper Ссылка
-                        input.works-editor__form-input(v-model.trim="$v.workLink.$model" type='text' placeholder='https://www.porsche-pulkovo.ru')
-                        .error(v-if="submitStatus === 'ERROR' && !$v.workLink.required") Введите ссылку!
+                        input.works-editor__form-input(v-model.trim="selectedWork.link" type='text' placeholder='Введите ссылку')
+                        .error(v-if="submitStatus === 'ERROR' && !$v.selectedWork.link.required") Введите ссылку!
                 .works-editor__form-row
                     label.works-editor__form-label.error__wrapper Описание
-                        textarea.works-editor__form-input.works-editor__form-textarea(v-model.trim="$v.workDesc.$model" placeholder='Введите описание' rows="4")
-                        .error(v-if="submitStatus === 'ERROR' && !$v.workDesc.required") Введите описание!
+                        textarea.works-editor__form-input.works-editor__form-textarea(v-model.trim="selectedWork.description" placeholder='Введите описание' rows="4")
+                        .error(v-if="submitStatus === 'ERROR' && !$v.selectedWork.description.required") Введите описание!
                 .works-editor__form-row
                     label.works-editor__form-label Добавление тега
-                        input.works-editor__form-input(type='text' placeholder='Введите тег')
+                        input.works-editor__form-input(v-model.trim="selectedWork.techs" type='text' placeholder='Введите теги')
                 .works-editor__form-row
                     .works-editor__tags
-                        ul.tags
-                            li.tags__item HTML
-                                a.tags__cross
-                            li.tags__item Vue
-                                a.tags__cross
+                        ul(v-show="tags.length > 0").tags
+                            li(v-for="tag in tags").tags__item {{tag}}
+                                a(@click.prevent="removeTag(tag)").tags__cross
+                           
                 .works-editor__form-btns
-                    input.works-editor__form-btn.btn-cancel(name='' type='reset' value='Отмена')
+                    input(@click="cancelEditor").works-editor__form-btn.btn-cancel(name='' type='button' value='Отмена')
                     input.works-editor__form-btn.btn-save(name='' type='submit' value='Сохранить')
 </template>
 
@@ -178,10 +179,21 @@
         padding-bottom: 60px;
         padding-left: 30%;
         padding-right: 30%;
+        position: relative;
         @include phones {
             padding-left: 15%;
             padding-right: 15%;
         }
+    }
+    .file-drop__background-pic {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
     }
     .file-drop__hint {
         opacity: 0.5;
@@ -191,6 +203,7 @@
         font-weight: 700;
         line-height: 33.89px;
         text-align: center;
+        z-index: 1;
     }
     .file-drop__fake-button {
         border-radius: 25px;
@@ -205,6 +218,7 @@
         padding-left: 40px;
         padding-right: 40px;
         margin-top: 20px;
+        z-index: 1;
     }
 
     .file-drop__input{
@@ -261,50 +275,104 @@
 <script>
 import SvgIcon from "../util/svg-icon.vue"
 import { required, minLength, between } from 'vuelidate/lib/validators'
+import { mapActions } from "vuex";
 
 export default {
     components: {SvgIcon},
     data() {
         return {
-            workName: '',
-            workLink: '',
-            workDesc: '',
-            workPic: '',
-            submitStatus: null
+            submitStatus: null,
+            renderedPhoto: "",
         }
+    },
+    computed : {
+        tags: function () {
+            var t = this.selectedWork.techs.split(',')
+            if (t[0] == '' && t.length == 1) return [];
+            return t;
+      }
+    },
+    props: {
+        selectedWork: {
+                type: Object,
+                default: () => {},
+                required: true
+            }
     },
     validations: {
-        workName: {
-            required
-        },
-        workLink: {
-            required
-        },
-        workDesc: {
-            required
-        },
-        workPic: {
-            required
+        selectedWork: {
+            title: {
+                required
+            },
+            link: {
+                required
+            },
+            description: {
+                required
+            },
+            photo: {
+                required
+            }
         }
     },
+    mounted() {
+        this.renderedPhoto = this.selectedWork.photo.length>0 ? "https://webdev-api.loftschool.com/" + this.selectedWork.photo : "";
+    },
     methods: {
-        postWork() {
-            console.log('posting review');
-
+        ...mapActions("works", ["upsertWork","closeWorkInEditor"]),
+        async postWork() {
             this.$v.$touch()
             if (this.$v.$invalid) {
                 this.submitStatus = 'ERROR'
             } else {
                 this.submitStatus = 'PENDING'
-                setTimeout(() => {this.submitStatus = 'OK'}, 500);
+                try {
+                    await this.upsertWork(this.selectedWork);
+                } catch (error) {
+                    // handling error
+                } finally {
+                    this.submitStatus = 'OK'
+                }
             }
         },
-        workPicChanged() {
+        async cancelEditor(){
+            
+            try {
+                await this.closeWorkInEditor();
+            } catch (error) {
+                // handling error
+            } 
+            
+        },
+        removeTag(tagToRemove) {
+            console.log(tagToRemove);
+            var newTags = this.selectedWork.techs.split(',');
+            for(var i = 0 ; i < newTags.length ; i++) {
+                if(newTags[i].trim() == tagToRemove.trim()) {
+                    newTags.splice(i, 1);
+                }
+            }
+            this.selectedWork.techs = newTags.join(',');
+        },
+        photoChanged() {
             var files = event.target.files || event.dataTransfer.files;
             if (!files.length) {
                 return;
             }
-            this.workPic = files[0];
+            this.selectedWork.photo = files[0];
+            this.renderImageFile(files[0]);
+        },
+        
+        renderImageFile(file) {
+            const reader = new FileReader();
+            try {
+                reader.readAsDataURL(file);
+                reader.onloadend = () => {
+                    this.renderedPhoto = reader.result;
+                };
+            } catch (error) {
+                throw new Errow("Ошибка при чтении файла");
+            }
         }
   }
 }

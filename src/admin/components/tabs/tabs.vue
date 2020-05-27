@@ -50,8 +50,8 @@ export default {
     return {
       tabs: [
         { title: "Обо мне", href: "/" },
-        { title: "Отзывы", href: "/reviews" },
-        { title: "Работы", href: "/works" }
+        { title: "Работы", href: "/works" },
+        { title: "Отзывы", href: "/reviews" }
       ]
     };
   }

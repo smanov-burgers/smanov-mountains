@@ -1,9 +1,10 @@
 <template lang="pug">
   section.section.works
     .section__head
-      h1.page__title Блок «Обо мне»
-    works-editor
-    works-list
+      h1.page__title Блок «Работы»
+      //- pre {{works}}
+    works-editor(v-if="editorVisible" :selectedWork="currentWork")
+    works-list(:worksList="works")
 </template>
 
 
@@ -16,21 +17,22 @@
   export default {
     components: {SvgIcon, worksEditor, worksList},
     data: () => ({
-      title: ""
     }),
     computed : {
-      ...mapState("categories", {
-        categories: state => state.categories
+      ...mapState("works", {
+        works: state => state.works,
+        currentWork: state => state.currentWork,
+        editorVisible: state => state.editorVisible,
       })
     },
     created() {
-      this.fetchCategories();
+      this.fetchWorks();
     },
     methods: {
-      ...mapActions("categories", ["addCategory", "fetchCategories"]),
-      async addNewCategory() {
+      ...mapActions("works", ["fetchWorks"]),
+      async pushNewCategory() {
         try {
-          await this.addCategory(this.title);
+          await this.fetchWorks();
         } catch (error) {
           alert(error.message);
         }

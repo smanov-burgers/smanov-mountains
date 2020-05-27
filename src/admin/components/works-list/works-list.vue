@@ -2,38 +2,11 @@
     .works-list__wrapper
         ul.works-list
             li.works-list__item
-                .works-list__add-wrapper
+                a(@click.prevent="newWork").works-list__add-wrapper
                     .works-list__add-btn
                     .works-list__add-text Добавить работу
-            li.works-list__item
-                .works-list__work.work-preview
-                    .work-preview__pic-wrapper
-                        img(src="~images/works/1.jpg").work-preview__pic
-                    .work-preview__content
-                        .work-preview__title Сайт школы образования
-                        .work-preview__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
-                        .work-preview__link-wrapper
-                            .work-preview__link http://loftschool.ru
-                        .work-preview__btns 
-                            a(href="").work-preview__btn Править
-                                SvgIcon(className = "work-preview__btn-icon work-preview__btn-icon--blue", name = "pencil")
-                            a(href="").work-preview__btn Удалить
-                                SvgIcon(className = "work-preview__btn-icon work-preview__btn-icon--red", name = "remove")
-            li.works-list__item
-                .works-list__work.work-preview
-                    .work-preview__pic-wrapper
-                        img(src="~images/works/2.jpg").work-preview__pic
-                    .work-preview__content
-                        .work-preview__title Сайт школы образования 2
-                        .work-preview__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
-                        .work-preview__link-wrapper
-                            .work-preview__link http://loftschool.ru
-                        .work-preview__btns 
-                            a(href="").work-preview__btn Править
-                                SvgIcon(className = "work-preview__btn-icon work-preview__btn-icon--blue", name = "pencil")
-                            a(href="").work-preview__btn Удалить
-                                SvgIcon(className = "work-preview__btn-icon work-preview__btn-icon--red", name = "remove")
-
+            li(v-for="work in worksList" :key="work.id").works-list__item
+                work(:work="work")
 
 </template>
 
@@ -132,91 +105,34 @@
         }
     }
     
-    .work-preview {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-    }
-
-    .work-preview__pic-wrapper {
-        position: relative;
-        height: 35%;
-    }
-
-    .work-preview__pic {
-        display: block;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        min-height: 100%;
-        min-width: 100%;
-        transform: translate(-50%, -50%);
-    }
-
-    .work-preview__content {
-        padding: 30px;
-        height: 65%;
-        position: relative;
-    }
-
-    .work-preview__title {
-        color: #414c63;
-        font-family: "Open Sans";
-        font-size: 18px;
-        font-weight: 700;
-        line-height: 30px;
-    }
-    .work-preview__text{
-        color: rgba(#414c63, 0.7);
-        font-family: "Open Sans";
-        font-size: 16px;
-        font-weight: 700;
-        line-height: 30px;
-        height: 150px;
-        overflow: hidden;
-    }
-    .work-preview__link {
-        margin-top: 30px;
-        color: #383bcf;
-        font-family: "Open Sans";
-        font-size: 16px;
-        font-weight: 700;
-        line-height: 30px;
-    }
-    .work-preview__btns {
-        margin-top: 36px;
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        margin-bottom: 10px;
-    }
-    .work-preview__btn {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-        color: rgba(#414c63, 0.5);
-        font-family: "Open Sans";
-        font-size: 16px;
-        font-weight: 700;
-        line-height: 30px;
-    }
-    .work-preview__btn-icon {
-        width: 17px;
-        height: 17px;
-        margin-left: 10px;
-        &--blue {
-            fill: #383bcf;
-        }
-        &--red {
-            fill: #c92e2e;
-        }
-    }
-    
 </style>
 
 <script>
-import SvgIcon from "../util/svg-icon.vue"
-export default {
-    components: {SvgIcon}
-}
+    import SvgIcon from "../util/svg-icon.vue"
+    import work from "../work/work.vue"
+    import { mapActions } from "vuex";
+
+    export default {
+    data() {
+        return {
+            submitStatus: null
+        }
+    },
+    components: {SvgIcon, work},
+    props: {
+        worksList: {
+        type: Array,
+        default: () => [],
+        required: true
+        }
+    },
+    methods: {
+        ...mapActions("works", ["openNewWorkInEditor"]),
+        async newWork() {
+            try {
+                await this.openNewWorkInEditor();
+            } catch (error) {}
+        }
+    }
+};
 </script>
