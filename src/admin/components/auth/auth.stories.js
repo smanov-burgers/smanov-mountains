@@ -1,15 +1,15 @@
-import auth from "./auth.vue"
-import "../../default.pcss"
+import auth from "./auth.vue";
+import "../../default.pcss";
 
 export default {
-    title: "Auth"
-}
+  title: "Auth",
+};
 
 export const defaultView = () => ({
-    components: {auth},
-    template: `
+  components: { auth },
+  template: `
         <auth>
             
         </auth>
-    `
+    `,
 });

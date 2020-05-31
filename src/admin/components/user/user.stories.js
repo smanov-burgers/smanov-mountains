@@ -1,16 +1,16 @@
-import user from "./user.vue"
-import "../../default.pcss"
+import user from "./user.vue";
+import "../../default.pcss";
 
 export default {
-    title: "User"
-}
+  title: "User",
+};
 
 export const defaultView = () => ({
-    components: {user},
-    template: `
+  components: { user },
+  template: `
         <user 
             userpic = "images/content/user.jpg"
             username = "Владимир Астаханов"
         />
-    `
+    `,
 });

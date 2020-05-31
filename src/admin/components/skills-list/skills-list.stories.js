@@ -1,15 +1,15 @@
-import skillsList from "./skills-list.vue"
-import "../../default.pcss"
+import skillsList from "./skills-list.vue";
+import "../../default.pcss";
 
 export default {
-    title: "Skills list"
-}
+  title: "Skills list",
+};
 
 export const defaultView = () => ({
-    components: {skillsList},
-    template: `
+  components: { skillsList },
+  template: `
         <skills-list>
             
         </skills-list>
-    `
+    `,
 });

@@ -1,15 +1,15 @@
-import reviewsList from "./review.vue"
-import "../../default.pcss"
+import reviewsList from "./review.vue";
+import "../../default.pcss";
 
 export default {
-    title: "Review"
-}
+  title: "Review",
+};
 
 export const defaultView = () => ({
-    components: {review},
-    template: `
+  components: { review },
+  template: `
         <review>
             
         </review>
-    `
+    `,
 });

@@ -5,15 +5,15 @@ import store from "../store";
 import axios from "axios";
 
 const guard = axios.create({
-  baseURL: "https://webdev-api.loftschool.com/"
+  baseURL: "https://webdev-api.loftschool.com/",
 });
 
 Vue.use(VueRouter);
 
-const router = new VueRouter({routes });
+const router = new VueRouter({ routes });
 
 router.beforeEach(async (to, from, next) => {
-  const isPublicRoute = to.matched.some(route => route.meta.public);
+  const isPublicRoute = to.matched.some((route) => route.meta.public);
   const isUserLoggedIn = store.getters["user/userIsLoggedIn"];
 
   if (isPublicRoute === false && isUserLoggedIn === false) {
@@ -26,7 +26,7 @@ router.beforeEach(async (to, from, next) => {
       store.commit("user/SET_USER", response.data.user);
       next();
     } catch (error) {
-      router.replace('/login');
+      router.replace("/login");
       localStorage.clear();
     }
   } else {

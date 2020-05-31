@@ -12,7 +12,7 @@ export default {
     },
     className: {
       type: String,
-      default: '',
+      default: "",
     },
   },
   computed: {
@@ -24,7 +24,7 @@ export default {
     },
     icon() {
       return require(`../../../images/icons/${this.name}.svg`).default;
-    }
+    },
   },
 };
 </script>

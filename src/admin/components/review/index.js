@@ -1,1 +1,1 @@
-export {default} from "./review.vue"
+export { default } from "./review.vue";

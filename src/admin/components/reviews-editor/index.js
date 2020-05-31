@@ -1,1 +1,1 @@
-export {default} from "./reviews-editor.vue"
+export { default } from "./reviews-editor.vue";

@@ -1,1 +1,1 @@
-export {default} from "./work.vue"
+export { default } from "./work.vue";

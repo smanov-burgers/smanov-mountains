@@ -16,13 +16,13 @@ const display = {
     reversedWorks() {
       const works = [...this.works];
       return works.reverse();
-    }
-  }
+    },
+  },
 };
 
 const tags = {
   template: "#slider-tags",
-  props: ["tags"]
+  props: ["tags"],
 };
 
 const info = {
@@ -32,8 +32,8 @@ const info = {
   computed: {
     tagsArray() {
       return this.currentWork.skills.split(",");
-    }
-  }
+    },
+  },
 };
 
 new Vue({
@@ -59,10 +59,10 @@ new Vue({
   methods: {
     makeInfiniteLoopForIndex(value) {
       const worksAmountFromZero = this.works.length - 1;
-    //   if (value > worksAmountFromZero) this.currentIndex = 0;
-    //   if (value < 0) this.currentIndex = worksAmountFromZero;
-        if (value > worksAmountFromZero) this.currentIndex = worksAmountFromZero;
-        if (value < 0) this.currentIndex = 0;
+      //   if (value > worksAmountFromZero) this.currentIndex = 0;
+      //   if (value < 0) this.currentIndex = worksAmountFromZero;
+      if (value > worksAmountFromZero) this.currentIndex = worksAmountFromZero;
+      if (value < 0) this.currentIndex = 0;
     },
     handleSlide(direction) {
       switch (direction) {
