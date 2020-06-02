@@ -1,5 +1,6 @@
 script(type="text/x-template")#skills-list
     ul.skill-category
+      //- pre {{skills}}
       li.skill-category__item.skills-row(v-for="category in skills" :key="category.title")
         skills-row(
           :category="category"

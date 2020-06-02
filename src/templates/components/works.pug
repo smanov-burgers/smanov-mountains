@@ -1,16 +1,17 @@
 script(type="text/x-template")#slider-container
-  .works
+  .works(v-if="works.length > 0")
     display(
       :currentWork="currentWork"
       :works="works"
       :currentIndex="currentIndex"
       @slide="handleSlide"
+      ref="dspl"
     )
     info(
       :currentWork="currentWork"
     )
 
-script(type="text/x-template")#slider-display
+script(type="text/x-template" )#slider-display
   .works__left(:data-slide="currentIndex + 1")
     .slider
         img(:src="currentWork.photo").slider__fillpic
@@ -21,6 +22,7 @@ script(type="text/x-template")#slider-display
             thumbs(
             :works="reversedWorks"
             :currentWork="currentWork"
+            ref="thmbs"
             )
         .slider__current {{currentIndex + 1}}
 
@@ -32,14 +34,31 @@ script(type="text/x-template")#slider-btns
         +icon('arrow-down', 'slider-button__icon')
 
 script(type="text/x-template")#slider-thumbs
-  ul.previews
+  transition-group(
+        tag="ul" 
+        ref="thmbs"
+        :css="false"
+        @enter="enterCb"
+        @after-enter="afterCb"
+        @leave="leaveCb"
+      ).previews
     li.previews__item(
-      v-for="work in works" 
+      v-for="work in sortedWorks" 
       :key="work.id"
       :class="{'previews__item--selected': currentWork.id === work.id}"
     )
       a.works-slider__thumb-link
         img(:src="work.photo").works-slider__thumb
+      //- pre {{sortedWorks}}
+//- script(type="text/x-template")#slider-thumbs
+//-   ul.previews
+//-     li.previews__item(
+//-       v-for="work in works" 
+//-       :key="work.id"
+//-       :class="{'previews__item--selected': currentWork.id === work.id}"
+//-     )
+//-       a.works-slider__thumb-link
+//-         img(:src="work.photo").works-slider__thumb
 
 script(type="text/x-template")#slider-info
   .works__right
@@ -48,9 +67,9 @@ script(type="text/x-template")#slider-info
     )
     h3.works__sub-title {{currentWork.title}}
     .works__desc-text
-      p {{currentWork.desc}}
+      p {{currentWork.description}}
     
-      a(:href="currentWork.link").iconed-link
+      a(:href="currentWork.link" target="_blank").iconed-link
         +icon('link', 'iconed-link__icon')
         .iconed-link__text Посмотреть сайт
 

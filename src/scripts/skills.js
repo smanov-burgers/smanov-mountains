@@ -1,4 +1,9 @@
 import Vue from "vue";
+import axios from "axios";
+
+const $axios = axios.create({
+  baseURL: "https://webdev-api.loftschool.com"
+});
 
 const skill = {
   template: "#skill",
@@ -38,8 +43,8 @@ new Vue({
       skills: [],
     };
   },
-  created() {
-    const data = require("../data/skills.json");
+  async created() {
+    const { data } = await $axios.get("/categories/328");
     this.skills = data;
   },
 });

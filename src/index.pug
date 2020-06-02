@@ -11,7 +11,7 @@ html(lang="en")
     .wrapper
       .welcome-section
         section.parallax.parallax-mountains
-          - var paralaxMountainsSpeed = [0, 0.5, 0.5, 0.38, 0.45, 0.68, 0.25]
+          - var paralaxMountainsSpeed = [0, -0.2, 0.7, -0.38, 0.6, 0.68, 0.25]
               each item, index in paralaxMountainsSpeed
                 .parallax-mountains__layer(data-speed=`${item}`)
                   +image(`parallax/mountain/mountain${index+1}.png`, "parallax-mountains__image")
@@ -97,34 +97,6 @@ html(lang="en")
               .works__title
                 h2.section-title Мои работы
               #slider-component  
-              //- .works
-              //-   .works__left
-              //-     .slider
-              //-       +image("content/slider-stub.png", "slider__fillpic")
-              //-       .slider__preview
-              //-         ul.previews
-              //-           - for (var i = 1; i < 4; i++)
-              //-             li(class=`previews__item${i==3? " previews__item--selected" : ""}`)
-              //-               +image(`works/${i+1}.jpg`, `previews__pic`)
-              //-       .slider__buttons
-              //-           button.slider-button.slider-button--prev 
-              //-             +icon('arrow-down', 'slider-button__icon')
-              //-           button.slider-button.slider-button--next
-              //-             +icon('arrow-down', 'slider-button__icon')
-              //-       .slider__current 4
-              //-   .works__right
-              //-     .works__tags
-              //-       - var tags = ['HTML', 'CSS', 'Javascript']
-              //-       ul.tags
-              //-         each tag in tags
-              //-           li.tags__item #{tag}
-              //-     .works__text
-              //-       h3.works__sub-title Сайт школы <br/> образования
-              //-       .works__desc-text
-              //-         p Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
-              //-       a.iconed-link
-              //-         +icon('link', 'iconed-link__icon')
-              //-         .iconed-link__text Посмотреть сайт
 
       .last-section
         section.parallax.parallax-cloud
@@ -154,27 +126,7 @@ html(lang="en")
           .contact__title
             h2.section-title Связаться со мной
           #contact-component
-          //- form(action="/contact" method="POST")#contact-form.contact__form
-          //-   .contact__form-row.contact__form-row--two
-          //-     label.contact__form-block
-          //-       .contact__form-block-wrapper
-          //-         .contact__form-label Введите ваше имя
-          //-         +icon('user', 'contact__form-icon')
-          //-         input.contact__form-input(name='name' type='text' placeholder='Ковальчук Дмитрий' required='')
-
-          //-     label.contact__form-block
-          //-       .contact__form-label Введите ваш email
-          //-       +icon('envelope', 'contact__form-icon')
-          //-       input.contact__form-input.phone-mask(name='email' type='email' placeholder='loftschool@study.com' required='')
-
-          //-   .contact__form-row
-          //-     label.contact__form-block
-          //-       .contact__form-label Сообщение к письму
-          //-       +icon('message', 'contact__form-icon')
-          //-       textarea.contact__form-input.contact__form-input_textarea(name='comment' placeholder!='Требуется ваша помощь в создании сайта.\nИнтересуют сроки и цена вопроса' required='')
-      
-          //-   .contact__form-row
-          //-     input#contact.contact__form-button(name='' type='submit' value='Отправить')
+          
         section.footer
           .footer__left
             .footer__copyright © 2019

@@ -10,11 +10,11 @@ script(type="text/x-template")#reviews-slider
             .review-left
                 +icon('quote', 'review__icon-quote')
             .review-right 
-                .review-text {{review.content}}
+                .review-text {{review.text}}
                 .review-author
                     .review-author__left
-                        img.review-author__pic(:src="review.avatar")
+                        img.review-author__pic(:src="review.photo")
                     
                     .review-author__right
-                        .review-author__name {{review.name}}
-                        .review-author__desc {{review.desc}}
+                        .review-author__name {{review.author}}
+                        .review-author__desc {{review.occ}}
