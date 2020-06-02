@@ -30,7 +30,6 @@ new Vue({
   },
   methods: {
     postContact() {
-      console.log("posting contact");
       this.$v.$touch();
       if (this.$v.$invalid) {
         this.submitStatus = "ERROR";

@@ -1,10 +1,11 @@
 <template lang="pug">
-  section.section.works
-    .section__head
-      h1.page__title Блок «Работы»
-      //- pre {{works}}
-    works-editor(v-if="editorVisible" :selectedWork="currentWork")
-    works-list(:worksList="works")
+  section.section
+    .works
+      .section__head
+        h1.page__title Блок «Работы»
+        //- pre {{works}}
+      works-editor(v-if="editorVisible" :selectedWork="currentWork")
+      works-list(:worksList="works")
 </template>
 
 <script>
@@ -35,4 +36,8 @@ export default {
 <style lang="postcss" scoped>
 @import "../../styles/mixins.pcss";
 @import "./common/pages.pcss";
+
+.works {
+  max-width: 1280px;  
+}
 </style>

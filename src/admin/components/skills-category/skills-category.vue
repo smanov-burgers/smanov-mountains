@@ -22,9 +22,13 @@
             table.skills-category__skill-list.skill
                 skill(v-for="skl in category.skills" :key="skl.id" :skill="skl")
         .skills-category__row(v-show="category.hasOwnProperty('id') && category.id > 0")
-            input.skills-category__input.skills-category__new-title(v-model="skill.title" type='text' placeholder='Новый навык' required='')
-            .input--prc-wrapper.skills-category__new-prc-wrapper
-                input.skills-category__input.skills-category__new-prc(v-model="skill.percent" type='text' placeholder='100' required='')
+            .skills-category__new-title.error__wrapper
+              input.skills-category__input.skills-category__new-title(v-model="skill.title" type='text' placeholder='Новый навык' required='')
+              .error(v-if="submitStatus === 'ERROR' && !$v.skill.title.required") Введите описание!
+
+            .input--prc-wrapper.skills-category__new-prc-wrapper.error__wrapper
+                input.skills-category__input.skills-category__new-prc(v-model="skill.percent" type='text' placeholder='' required='')
+                .error(v-if="submitStatus === 'ERROR' && $v.skill.percent.$invalid && $v.skill.percent.$dirty") Число от 0 до 100! 
             .skills-category__btn-add
                 //- a.btn-add
                 a(@click.prevent='addNewSkill' :disabled="loading").btn-add
@@ -32,6 +36,7 @@
 
 <style lang="postcss" scoped>
 @import "../../../styles/mixins.pcss";
+@import "../../../styles/blocks/error.pcss";
 
 .skills-category {
   display: flex;
@@ -223,6 +228,8 @@
 <script>
 import SvgIcon from "../util/svg-icon.vue";
 import { mapActions } from "vuex";
+import { required, minLength, maxLength, between } from "vuelidate/lib/validators";
+
 export default {
   components: {
     skill: () => import("../skill"),
@@ -232,6 +239,7 @@ export default {
     return {
       loading: false,
       isInEditMode: false,
+      submitStatus: null,
       skill: {
         title: "",
         percent: 0,
@@ -246,6 +254,17 @@ export default {
       required: true,
     },
   },
+  validations: {
+    skill: {
+      title: {
+        required,
+      },
+      percent: {
+        required,
+        between: between(0,100)
+      }
+    },
+  },
   methods: {
     ...mapActions("skills", ["addSkill"]),
     ...mapActions("categories", [
@@ -256,22 +275,31 @@ export default {
     ...mapActions("customError", ["displayError"]),
     async addNewSkill() {
       this.loading = true;
-      try {
-        await this.addSkill(this.skill);
-
-        this.skill.title = "";
-        this.skill.percent = "";
-      } catch (error) {
-        var customError;
-        if (error.response.status == 422) {
-          customError = "Введите корректные данные";
-        } else {
-          customError = "Произошла непредвиденная ошибка";
-        }
-        this.displayError(customError);
-      } finally {
-        this.loading = false;
+      this.$v.$touch();
+      if (this.$v.$invalid) {
+        this.submitStatus = "ERROR";
       }
+      else {
+        try {
+          await this.addSkill(this.skill);
+
+          this.skill.title = "";
+          this.skill.percent = "";
+        } catch (error) {
+            var customError;
+            if (error.response.status == 422) {
+              customError = "Введите корректные данные";
+            } else {
+              customError = "Произошла непредвиденная ошибка";
+            }
+            this.displayError(customError);
+          }
+          finally {
+            this.loading = false;
+            this.submitStatus = "OK";
+        }
+      }
+      
     },
     async deleteExistingCategory() {
       this.loading = true;

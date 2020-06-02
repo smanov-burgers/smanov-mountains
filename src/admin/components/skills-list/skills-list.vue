@@ -23,6 +23,7 @@
 .section {
   padding-left: 60px;
   padding-right: 58px;
+  
 
   @include tablets {
     padding-left: 30px;

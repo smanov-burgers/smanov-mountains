@@ -1,9 +1,10 @@
 <template lang="pug">
-  section.section.reviews
-    .section__head
-      h1.page__title Блок «Обо мне»
-    reviews-editor(v-if="editorVisible" :selectedReview="currentReview")
-    reviews-list(:reviewsList="reviews")
+  section.section
+    .reviews
+      .section__head
+        h1.page__title Блок «Обо мне»
+      reviews-editor(v-if="editorVisible" :selectedReview="currentReview")
+      reviews-list(:reviewsList="reviews")
 </template>
 
 <script>
@@ -34,4 +35,8 @@ export default {
 <style lang="postcss" scoped>
 @import "../../styles/mixins.pcss";
 @import "./common/pages.pcss";
+
+.reviews {
+  max-width: 1280px;  
+}
 </style>
