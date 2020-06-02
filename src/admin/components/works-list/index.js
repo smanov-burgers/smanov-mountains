@@ -1,1 +1,1 @@
-export {default} from "./works-list.vue"
+export { default } from "./works-list.vue";

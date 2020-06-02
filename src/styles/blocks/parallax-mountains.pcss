@@ -19,6 +19,14 @@
     will-change: transform;
 
     &:nth-child(1) {
+
+        top: -20%;
+        bottom: 0;
+        left: -5%;
+        right: -5%;
+        width: 110%;
+        height: 120%;
+
         .parallax-mountains__image {
             width: 100%;
             height: 100%;
@@ -53,7 +61,12 @@
         .parallax-mountains__image {
             left: 0;
             top: 610px;
+            max-width: 200%;
+            max-height: 200%;
+            width: 130%;
+            height: auto;
         }
+       
     }
 
     &:nth-child(5) {
@@ -83,16 +96,26 @@
     }
 
     &:nth-child(7) {
-
-        width: 170%;
-        height: 150%;
-        top: -30%;
-        left: -31.5%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        max-width: 200%;
+        max-height: 200%;
+        width: 90%;
+        height: auto;
+        top: 20%;
+        left: -36%;
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         .parallax-mountains__image {
             left: 0;
             bottom: 0;
-
+            max-width: 200%;
+            max-height: 200%;
             @include desktop {
                 bottom: 360px;
             }

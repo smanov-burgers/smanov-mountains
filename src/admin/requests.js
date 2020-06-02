@@ -7,13 +7,13 @@ if (!token) console.warn("Отсутствует токен");
 const requests = axios.create({
   baseURL: "https://webdev-api.loftschool.com/",
   headers: {
-    Authorization: `Bearer ${token}`
-  }
+    Authorization: `Bearer ${token}`,
+  },
 });
 
 requests.interceptors.response.use(
-  response => response,
-  async error => {
+  (response) => response,
+  async (error) => {
     const originalRequest = error.config;
 
     if (error.response.status === 401) {

@@ -31,207 +31,202 @@
 </template>
 
 <style lang="postcss" scoped>
-    @import "../../../styles/mixins.pcss";
+@import "../../../styles/mixins.pcss";
 
-    .skills-category {
-        display: flex;
-        width: 100%;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
-        margin-bottom: 30px;
-        min-height: 387px;
-        background: #fff;
-        padding-bottom: 30px;
-        @include phones {
-            margin-bottom: 10px;
-        }
-    }
-    .skills-category__skill-list {
-        width: 100%;
-    }
-    .skills-category__row {
-        display: flex;
-        width: 100%;
-        padding-left: 20px;
-        padding-right: 20px;
-        padding-top: 14px;
-        padding-bottom: 14px;
-        position: relative;
-        
-        &:first-child {
-            &:after {
-                position: absolute;
-                content: '';
-                display: block;
-                border-bottom: 1px solid rgba(#1f232d, 0.15);
-                width: calc(100%-40px);
-                left: 20px;
-                bottom: 0;
-            }
-        }
-        &:last-child {
-            margin-top: auto;
-            justify-content: flex-end;
-            align-items: flex-end;
-        }
-        
-    }
-    .skills-category__input{
-        border: none;
-        border-bottom: 1px solid transparent;
-        color: #414c63;
-        font-family: "Open Sans";
-        font-weight: bold;
-        font-size: 18px;
-        line-height: 34px;
-        outline: none;
-        width: 60%;
-        &--edit {
-            border-bottom: 1px solid #000;
-        }
-        &:placeholder {
-            color: rgba(#414c63, 0.51);
-        }
-    }
-    .skills-category__btns{
-       display: flex;
-       margin-left: auto;
-       justify-content: center;
-       align-items: center;
-    }
-    .skills-category__btn {
-        display: flex;
-        width: 15px;
-        height: 12px;
-        margin-right: 10px;
-    }
-    .skills-category__btn-icon {
-        width: 100%;
-        height: 100%;
+.skills-category {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
+  margin-bottom: 30px;
+  min-height: 387px;
+  background: #fff;
+  padding-bottom: 30px;
+  @include phones {
+    margin-bottom: 10px;
+  }
+}
+.skills-category__skill-list {
+  width: 100%;
+}
+.skills-category__row {
+  display: flex;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  position: relative;
 
-        &--green {
-            fill: #00d70a;
-        }
-        
-        &--blue {
-            fill: #383bcf;
-        }
-
-        &--red {
-            fill: #bf2929;
-        }
+  &:first-child {
+    &:after {
+      position: absolute;
+      content: "";
+      display: block;
+      border-bottom: 1px solid rgba(#1f232d, 0.15);
+      width: calc(100%-40px);
+      left: 20px;
+      bottom: 0;
     }
+  }
+  &:last-child {
+    margin-top: auto;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+}
+.skills-category__input {
+  border: none;
+  border-bottom: 1px solid transparent;
+  color: #414c63;
+  font-family: "Open Sans";
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 34px;
+  outline: none;
+  width: 60%;
+  &--edit {
+    border-bottom: 1px solid #000;
+  }
+  &:placeholder {
+    color: rgba(#414c63, 0.51);
+  }
+}
+.skills-category__btns {
+  display: flex;
+  margin-left: auto;
+  justify-content: center;
+  align-items: center;
+}
+.skills-category__btn {
+  display: flex;
+  width: 15px;
+  height: 12px;
+  margin-right: 10px;
+}
+.skills-category__btn-icon {
+  width: 100%;
+  height: 100%;
 
-    .skill__row {
-        display: flex;
-    }
-
-    .skill__cell {
-        display: flex;
-        position: relative;
-        flex: 1;
-        &:nth-child(1) {
-            flex: 1 1 273px;
-            margin-right: 20px;
-        }
-        &:nth-child(2) {
-            flex: 0 0 74px;
-        }
-        &:nth-child(3) {
-            justify-content: flex-end;
-            padding-left: 60px;
-        }
-    }
-
-    .skill__input {
-        border: none;
-        color: #414c63;
-        font-family: "Open Sans";
-        font-weight: normal;
-        font-size: 16px;
-        outline: none;
-        padding: 10px;
-        width: 100%;
-        &:focus {
-            border-bottom: 1px solid #000;
-        }
-    }
-
-    .skill__btns {
-        display: flex;
-        align-items: center;
-    }
-
-    .skill__btn-icon {
-        display: flex;
-        width: 16px;
-        height: 16px;
-        fill: #a0a5b1;
-        margin-right: 10px;
-    }
-
-    .input--prc-wrapper {
-        position: relative;
-        &:before {
-            content: "%";
-            display: flex;
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-        }  
-    }
-
-    .skills-category__new-title {
-        width: 50%;
-        
-    }
-
-    .skills-category__new-prc-wrapper {
-        flex: 0 0 74px;
-        border-bottom: 1px solid #000;
-        margin-left: 20px;
-    }
-
-    .skills-category__new-prc {
-        margin-left: 10px;
-        flex: 0 0 74px;
-        border: none;
-    }
-
-    .skills-category__btn-add {
-        flex-shrink: 0;
-        width: 40px;
-        height: 40px;
-        margin-left: 40px;
-    }
-
-    .btn-add {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        background:
-        linear-gradient(#fff,#fff),
-        linear-gradient(#fff,#fff),
-        linear-gradient(to right, #006aed 0%, #3f35cb 100%);
-        background-position:center;
-        background-size: 50% 10%, 10% 50%, cover; /*thickness = 2px, length = 50% (25px)*/
-        background-repeat:no-repeat;
-
-        border-radius: 50%;
+  &--green {
+    fill: #00d70a;
   }
 
+  &--blue {
+    fill: #383bcf;
+  }
+
+  &--red {
+    fill: #bf2929;
+  }
+}
+
+.skill__row {
+  display: flex;
+}
+
+.skill__cell {
+  display: flex;
+  position: relative;
+  flex: 1;
+  &:nth-child(1) {
+    flex: 1 1 273px;
+    margin-right: 20px;
+  }
+  &:nth-child(2) {
+    flex: 0 0 74px;
+  }
+  &:nth-child(3) {
+    justify-content: flex-end;
+    padding-left: 60px;
+  }
+}
+
+.skill__input {
+  border: none;
+  color: #414c63;
+  font-family: "Open Sans";
+  font-weight: normal;
+  font-size: 16px;
+  outline: none;
+  padding: 10px;
+  width: 100%;
+  &:focus {
+    border-bottom: 1px solid #000;
+  }
+}
+
+.skill__btns {
+  display: flex;
+  align-items: center;
+}
+
+.skill__btn-icon {
+  display: flex;
+  width: 16px;
+  height: 16px;
+  fill: #a0a5b1;
+  margin-right: 10px;
+}
+
+.input--prc-wrapper {
+  position: relative;
+  &:before {
+    content: "%";
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.skills-category__new-title {
+  width: 50%;
+}
+
+.skills-category__new-prc-wrapper {
+  flex: 0 0 74px;
+  border-bottom: 1px solid #000;
+  margin-left: 20px;
+}
+
+.skills-category__new-prc {
+  margin-left: 10px;
+  flex: 0 0 74px;
+  border: none;
+}
+
+.skills-category__btn-add {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  margin-left: 40px;
+}
+
+.btn-add {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background: linear-gradient(#fff, #fff), linear-gradient(#fff, #fff),
+    linear-gradient(to right, #006aed 0%, #3f35cb 100%);
+  background-position: center;
+  background-size: 50% 10%, 10% 50%, cover; /*thickness = 2px, length = 50% (25px)*/
+  background-repeat: no-repeat;
+
+  border-radius: 50%;
+}
 </style>
 
 <script>
-import SvgIcon from "../util/svg-icon.vue"
+import SvgIcon from "../util/svg-icon.vue";
 import { mapActions } from "vuex";
 export default {
   components: {
     skill: () => import("../skill"),
-    SvgIcon
+    SvgIcon,
   },
   data() {
     return {
@@ -240,31 +235,40 @@ export default {
       skill: {
         title: "",
         percent: 0,
-        category: this.category.id
-      }
+        category: this.category.id,
+      },
     };
   },
   props: {
     category: {
       type: Object,
       default: () => {},
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     ...mapActions("skills", ["addSkill"]),
-    ...mapActions("categories", ["deleteCategory", "editCategory", "appendNewCategory"]),
+    ...mapActions("categories", [
+      "deleteCategory",
+      "editCategory",
+      "appendNewCategory",
+    ]),
+    ...mapActions("customError", ["displayError"]),
     async addNewSkill() {
       this.loading = true;
       try {
-        console.log("addNewSkill");
-        
         await this.addSkill(this.skill);
 
         this.skill.title = "";
         this.skill.percent = "";
       } catch (error) {
-        // handling error
+        var customError;
+        if (error.response.status == 422) {
+          customError = "Введите корректные данные";
+        } else {
+          customError = "Произошла непредвиденная ошибка";
+        }
+        this.displayError(customError);
       } finally {
         this.loading = false;
       }
@@ -273,7 +277,6 @@ export default {
       this.loading = true;
       try {
         await this.deleteCategory(this.category);
-
       } catch (error) {
         // handling error
       } finally {
@@ -284,7 +287,6 @@ export default {
       this.loading = true;
       try {
         await this.editCategory(this.category);
-
       } catch (error) {
         // handling error
       } finally {
@@ -294,7 +296,7 @@ export default {
     },
     async saveNewCategory() {
       this.loading = true;
-      
+
       try {
         await this.appendNewCategory(this.category.category);
       } catch (error) {
@@ -306,15 +308,14 @@ export default {
     async deleteNewCategory() {
       this.loading = true;
       try {
-        await this.deleteCategory(this.category)
-
+        await this.deleteCategory(this.category);
       } catch (error) {
         // handling error
       } finally {
         this.loading = false;
         this.isInEditMode = false;
       }
-    }
-  }
+    },
+  },
 };
 </script>

@@ -1,20 +1,24 @@
 export default {
   namespaced: true,
   state: {
-    categories: []
+    categories: [],
   },
   mutations: {
     SET_CATEGORIES: (state, data) => (state.categories = data),
     ADD_CATEGORY: (state, category) => state.categories.push(category),
     APPEND_CATEGORY: (state, category) => state.categories.unshift(category),
-    DELETE_CATEGORY: (state, category) => state.categories = state.categories.filter(cat => cat.id !== category.id).reverse(),
-    EDIT_CATEGORY: (state, category) => state.categories = state.forEach((cat, index) => {
-      if(cat.id === category.id) {
+    DELETE_CATEGORY: (state, category) =>
+      (state.categories = state.categories
+        .filter((cat) => cat.id !== category.id)
+        .reverse()),
+    EDIT_CATEGORY: (state, category) =>
+      (state.categories = state.forEach((cat, index) => {
+        if (cat.id === category.id) {
           items[index] = category;
-      }
-    }),
+        }
+      })),
     ADD_SKILL: (state, newSkill) => {
-      state.categories = state.categories.map(category => {
+      state.categories = state.categories.map((category) => {
         if (category.id === newSkill.category) {
           category.skills.push(newSkill);
         }
@@ -22,13 +26,13 @@ export default {
       });
     },
     REMOVE_SKILL: (state, deletedSkill) => {
-      const removeSkillInCategory = category => {
+      const removeSkillInCategory = (category) => {
         category.skills = category.skills.filter(
-          skill => skill.id !== deletedSkill.id
+          (skill) => skill.id !== deletedSkill.id
         );
       };
 
-      const findCategory = category => {
+      const findCategory = (category) => {
         if (category.id === deletedSkill.category) {
           removeSkillInCategory(category);
         }
@@ -40,13 +44,13 @@ export default {
     },
 
     EDIT_SKILL: (state, editedSkill) => {
-      const editSkillInCategory = category => {
-        category.skills = category.skills.map(skill => {
+      const editSkillInCategory = (category) => {
+        category.skills = category.skills.map((skill) => {
           return skill.id === editedSkill.id ? editedSkill : skill;
         });
       };
 
-      const findCategory = category => {
+      const findCategory = (category) => {
         if (category.id === editedSkill.category) {
           editSkillInCategory(category);
         }
@@ -55,7 +59,7 @@ export default {
       };
 
       state.categories = state.categories.map(findCategory);
-    }
+    },
   },
   actions: {
     async appendNewCategory({ commit }, title) {
@@ -65,7 +69,7 @@ export default {
         commit("ADD_CATEGORY", data);
         var newCat = new Object();
         newCat.id = -1;
-        commit("DELETE_CATEGORY", newCat); 
+        commit("DELETE_CATEGORY", newCat);
       } catch (error) {
         throw new Error(
           error.response.data.error || error.response.data.message
@@ -73,12 +77,9 @@ export default {
       }
     },
     async insertNewCategory({ commit, state }) {
-      if(state.categories.some(c => c.id === -1))
-        {
-          throw new Error(
-            "Уже есть новая категория"
-          );
-        }
+      if (state.categories.some((c) => c.id === -1)) {
+        throw new Error("Уже есть новая категория");
+      }
       try {
         var newCat = new Object();
         newCat.id = -1;
@@ -86,7 +87,6 @@ export default {
         newCat.skills = [];
 
         commit("APPEND_CATEGORY", newCat);
-
       } catch (error) {
         throw new Error(
           error.response.data.error || error.response.data.message
@@ -95,13 +95,13 @@ export default {
     },
     async deleteCategory({ commit }, category) {
       try {
-        if(category.id >= 0)
-        {
-          const { data } = await this.$axios.delete(`/categories/${category.id}`);
+        if (category.id >= 0) {
+          const { data } = await this.$axios.delete(
+            `/categories/${category.id}`
+          );
         }
-        
+
         commit("DELETE_CATEGORY", category);
-        
       } catch (error) {
         throw new Error(
           error.response.data.error || error.response.data.message
@@ -110,10 +110,10 @@ export default {
     },
     async editCategory({ commit }, category) {
       try {
-        
-        const { data } = await this.$axios.post(`/categories/${category.id}`, { title: category.category});
+        const { data } = await this.$axios.post(`/categories/${category.id}`, {
+          title: category.category,
+        });
         commit("EDIT_CATEGORY", category);
-        
       } catch (error) {
         throw new Error(
           error.response.data.error || error.response.data.message
@@ -123,23 +123,11 @@ export default {
 
     async fetchCategories({ commit, rootState }) {
       try {
-        const { data } = await this.$axios.get(`/categories/${rootState.user.user.id}`);
+        const { data } = await this.$axios.get(
+          `/categories/${rootState.user.user.id}`
+        );
         commit("SET_CATEGORIES", data);
       } catch (error) {}
     },
-
-    async addReview(store, review) {
-      const formData = new FormData();
-
-      Object.keys(review).forEach(key => {
-        const value = review[key];
-        formData.append(key, value);
-      });
-
-      const response = await this.$axios.post('/reviews', formData);
-
-      console.log(response.data);
-      
-    }
-  }
+  },
 };

@@ -5,12 +5,10 @@
         .username {{username}}            
 </template>
 
-<style lang="postcss" scoped>
-
-</style>
+<style lang="postcss" scoped></style>
 
 <script>
 export default {
-    props: ["username", "userpic"]
-}
+  props: ["username", "userpic"],
+};
 </script>

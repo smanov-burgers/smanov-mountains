@@ -1,15 +1,15 @@
-import headline from "./tabs.vue"
-import "../../default.pcss"
+import headline from "./tabs.vue";
+import "../../default.pcss";
 
 export default {
-    title: "Tabs"
-}
+  title: "Tabs",
+};
 
 export const defaultView = () => ({
-    components: {tabs},
-    template: `
+  components: { tabs },
+  template: `
         <tabs>
             
         </tabs>
-    `
+    `,
 });

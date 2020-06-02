@@ -1,15 +1,15 @@
-import headline from "./headline.vue"
-import "../../default.pcss"
+import headline from "./headline.vue";
+import "../../default.pcss";
 
 export default {
-    title: "Headline"
-}
+  title: "Headline",
+};
 
 export const defaultView = () => ({
-    components: {headline},
-    template: `
+  components: { headline },
+  template: `
         <headline>
             
         </headline>
-    `
+    `,
 });

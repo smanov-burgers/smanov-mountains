@@ -1,1 +1,1 @@
-export {default} from "./reviews-list.vue"
+export { default } from "./reviews-list.vue";

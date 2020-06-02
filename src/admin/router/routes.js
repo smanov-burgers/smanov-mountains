@@ -3,28 +3,28 @@ export default [
     path: "/",
     component: () => import("../pages/skills.vue"),
     meta: {
-      title: "Блок «Обо мне»"
-    }
+      title: "Блок «Обо мне»",
+    },
   },
   {
     path: "/works",
     component: () => import("../pages/works.vue"),
     meta: {
-      title: "Блок «Работы»"
-    }
+      title: "Блок «Работы»",
+    },
   },
   {
     path: "/reviews",
     component: () => import("../pages/reviews.vue"),
     meta: {
-      title: "Блок «Отзывы»"
-    }
+      title: "Блок «Отзывы»",
+    },
   },
   {
     path: "/login",
     component: () => import("../pages/login.vue"),
     meta: {
-      public: true
-    }
-  }
+      public: true,
+    },
+  },
 ];
