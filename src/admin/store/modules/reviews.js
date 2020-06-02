@@ -45,8 +45,6 @@ export default {
   actions: {
     async upsertReview({ commit }, review) {
       try {
-        console.log(review);
-
         const formData = new FormData();
         formData.append("author", review.author);
         formData.append("occ", review.occ);

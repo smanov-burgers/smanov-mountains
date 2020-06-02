@@ -64,7 +64,6 @@ export default {
   actions: {
     async appendNewCategory({ commit }, title) {
       try {
-        console.log(title);
         const { data } = await this.$axios.post("/categories", { title });
         commit("ADD_CATEGORY", data);
         var newCat = new Object();

@@ -1,16 +1,17 @@
 <template lang="pug">
-  section.section.skills
-    .section__head
-      h1.page__title Блок «Обо мне»
-      a.skills__btn-add(@click.prevent="pushNewCategory")
-          .skills__btn-add__icon
-              .btn-add
-          |Добавить группу
-    ul.skills__list
-      li(v-for="cat in categories" :key="cat.id").skills__list-elem
-        skills-category(
-          :category="cat"
-        )
+  section.section
+    .skills
+      .section__head
+        h1.page__title Блок «Обо мне»
+        a.skills__btn-add(@click.prevent="pushNewCategory")
+            .skills__btn-add__icon
+                .btn-add
+            |Добавить группу
+      ul.skills__list
+        li(v-for="cat in categories" :key="cat.id").skills__list-elem
+          skills-category(
+            :category="cat"
+          )
       
 </template>
 
@@ -49,6 +50,9 @@ export default {
 @import "../../styles/mixins.pcss";
 @import "./common/pages.pcss";
 
+.skills {
+  max-width: 1280px;  
+}
 .skills__btn-add {
   display: flex;
   justify-content: center;

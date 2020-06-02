@@ -6,7 +6,7 @@
             .works-editor__form-left
                 .works-editor__file-drop-area.file-drop__area.error__wrapper(@drop.prevent='photoChanged' @dragover.prevent='')
                     img(v-if="renderedPhoto.length > 0" :src="renderedPhoto").file-drop__background-pic
-                    .file-drop__hint Перетащите или загрузите для загрузки изображения
+                    .file-drop__hint(v-else) Перетащите или загрузите для загрузки изображения
                     button(@click="$refs.file.click()" type="button").file-drop__fake-button Загрузить
                     input(@change="photoChanged($event)" ref="file" type="file" accept="image/png, image/jpeg").file-drop__input
                     .error(v-if="submitStatus === 'ERROR' && !$v.selectedWork.photo.required") загрузите изображение!
@@ -351,7 +351,7 @@ export default {
       }
     },
     removeTag(tagToRemove) {
-      console.log(tagToRemove);
+      
       var newTags = this.selectedWork.techs.split(",");
       for (var i = 0; i < newTags.length; i++) {
         if (newTags[i].trim() == tagToRemove.trim()) {
