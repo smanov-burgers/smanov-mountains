@@ -9,7 +9,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = (env, argv) => {
   const isProductionBuild = argv.mode === "production";
-  const publicPath = 'https://smanov-burgers.github.io/';
+  const publicPath = 'https://smanov-burgers.github.io/dist/';
 
   const pcss = {
     test: /\.(p|post|)css$/,
