@@ -1,5 +1,5 @@
 <template lang="pug">
-    .login-overlay
+    #loginForm.login-overlay
         form(@submit.prevent='login' method='POST').login-form
             a.login__close
                 SvgIcon(className = "login__close-icon", name = "remove")
@@ -21,7 +21,7 @@
                         input.login__input(v-model="user.password" type='password' placeholder='**********' )
                         .error(v-if="submitStatus === 'ERROR' && $v.user.password.$error") Введите пароль!
             .login__btns
-                input.login__btn(name='' :disabled="submitStatus === 'PENDING'" type='submit' value='Отправить')
+                input.login__btn(name='' ref="loginBtn" :disabled="submitStatus === 'PENDING'" type='submit' value='Отправить')
 </template>
 
 <script>

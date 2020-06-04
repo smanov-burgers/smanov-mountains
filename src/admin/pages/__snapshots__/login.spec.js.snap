@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Сохраняет структуру 1`] = `
+<div
+  class="login-overlay"
+  id="loginForm"
+>
+  <form
+    class="login-form"
+    method="POST"
+  >
+    <a
+      class="login__close"
+    >
+      <svgicon-stub
+        classname="login__close-icon"
+        name="remove"
+      />
+    </a>
+    <div
+      class="login__title"
+    >
+      Авторизация
+    </div>
+    <div
+      class="login__row"
+    >
+      <label
+        class="login__label error__wrapper"
+      >
+        <div
+          class="login__span"
+        >
+          Логин
+        </div>
+        <div
+          class="login__input-wrapper"
+        >
+          <svgicon-stub
+            classname="login__icon"
+            name="user"
+          />
+          <input
+            class="login__input"
+            placeholder="Terminator_2000"
+            type="text"
+          />
+          <!---->
+        </div>
+      </label>
+    </div>
+    <div
+      class="login__row"
+    >
+      <label
+        class="login__label"
+      >
+        <div
+          class="login__span"
+        >
+          Пароль
+        </div>
+        <div
+          class="login__input-wrapper error__wrapper"
+        >
+          <svgicon-stub
+            classname="login__icon"
+            name="key"
+          />
+          <input
+            class="login__input"
+            placeholder="**********"
+            type="password"
+          />
+          <!---->
+        </div>
+      </label>
+    </div>
+    <div
+      class="login__btns"
+    >
+      <input
+        class="login__btn"
+        name=""
+        type="submit"
+        value="Отправить"
+      />
+    </div>
+  </form>
+</div>
+`;
