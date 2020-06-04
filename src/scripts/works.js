@@ -11,53 +11,49 @@ const btns = {
 };
 const thumbs = {
   template: "#slider-thumbs",
-  
-  props: ["works", "currentWork"],
-  computed: {
-    sortedWorks() {
-      var l = this.works.length;
-      return [...this.works].splice(l-3, 3);
+  data() {
+    return {
+      sortedWorks: [...this.works].slice(2),
+      currentPreviewIdx: 2,
+      currentWorkIdx: 0
     }
   },
+  props: ["works", "currentWork"],
+
   methods: {
-    enterCb(el, done) {
-      const list = el.closest("ul");
 
-      el.classList.add("outside");
-      list.style.top = "100px";
-      list.classList.add("transition");
-
-      list.addEventListener("transitionend", e => {
-        done();
-      });
-    },
-
-    leaveCb(el, done) {
-      el.classList.remove("fade");
-      el.classList.add("fade");
-    },
-
-    afterCb(el) {
-      const list = el.closest("ul");
-      list.classList.remove("transition");
-      list.style.top = 0;
-      el.classList.remove("outside");
-    },
-    slidePreview(direction) {
-     
+    slidePreview(direction, cIdx) {
       switch (direction) {
         case "next":
-          this.works.push(this.works[0]);
-          this.works.shift();
+
+          if (this.currentPreviewIdx == 0) {
+            this.sortedWorks.unshift([...this.works].reverse()[cIdx]);
+            this.sortedWorks.pop();
+          }
+          else {
+            this.currentPreviewIdx--;
+          }
+
           break;
         case "prev":
-          const lastItem = this.works[this.works.length - 1];
-          this.works.unshift(lastItem);
-          this.works.pop();
+          if (this.currentPreviewIdx == 2) {
+            this.sortedWorks.push([...this.works].reverse()[cIdx]);
+            this.sortedWorks.shift();
+          }
+          else {
+            this.currentPreviewIdx++;
+          }
           break;
       }
+
     }
   },
+  mounted: function () {
+    console.log(this.works.map(z=>z.id));
+    console.log([...this.works].reverse().map(z=>z.id));
+    console.log(this.sortedWorks.map(z=>z.id));
+    console.log(this.currentWork.id);
+  }
   // watch: {
   //   currentWork(value) {
   //     this.makeInfititeLoopForCurIndex(value);
@@ -71,13 +67,13 @@ const display = {
   props: ["currentWork", "works", "currentIndex"],
   computed: {
     reversedWorks() {
-      const works = [...this.works];
-      return works.reverse();
+      const works = [...this.works].reverse();
+      return works;
     },
   },
-  methods : {
-    rethrowSlide(direction) {
-      this.$refs.thmbs.slidePreview(direction);
+  methods: {
+    rethrowSlide(direction, cIdx) {
+      this.$refs.thmbs.slidePreview(direction, cIdx);
     }
   }
 };
@@ -121,8 +117,8 @@ new Vue({
   methods: {
     makeInfiniteLoopForIndex(value) {
       const worksAmountFromZero = this.works.length - 1;
-      //   if (value > worksAmountFromZero) this.currentIndex = 0;
-      //   if (value < 0) this.currentIndex = worksAmountFromZero;
+      // if (value > worksAmountFromZero) this.currentIndex = 0;
+      // if (value < 0) this.currentIndex = worksAmountFromZero;
       if (value > worksAmountFromZero) this.currentIndex = worksAmountFromZero;
       if (value < 0) this.currentIndex = 0;
     },
@@ -135,7 +131,8 @@ new Vue({
           this.currentIndex--;
           break;
       }
-      this.$refs.dspl.rethrowSlide(direction);
+      if(!(this.currentIndex < 0) && !(this.currentIndex> this.works.length - 1 ))
+      this.$refs.dspl.rethrowSlide(direction,this.currentIndex);
     },
     // makeArrWithRequireImages(array) {
     //   return array.map((item) => {
@@ -146,8 +143,8 @@ new Vue({
     // },
     makeArrWithUploadedImages(array) {
       return array.map((item) => {
-        
-        item.photo = "https://webdev-api.loftschool.com/"+item.photo;
+
+        item.photo = "https://webdev-api.loftschool.com/" + item.photo;
         return item;
       });
     },

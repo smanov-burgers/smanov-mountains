@@ -14,7 +14,8 @@ script(type="text/x-template")#slider-container
 script(type="text/x-template" )#slider-display
   .works__left(:data-slide="currentIndex + 1")
     .slider
-        img(:src="currentWork.photo").slider__fillpic
+        transition( name="flip" mode="out-in")
+          img(:src="currentWork.photo" :key="currentWork.photo").slider__fillpic
         btns(
           @slide="$emit('slide', $event)"
         )
@@ -37,16 +38,13 @@ script(type="text/x-template")#slider-thumbs
   transition-group(
         tag="ul" 
         ref="thmbs"
-        :css="false"
-        @enter="enterCb"
-        @after-enter="afterCb"
-        @leave="leaveCb"
+        name = "workslide"
       ).previews
     li.previews__item(
       v-for="work in sortedWorks" 
       :key="work.id"
       :class="{'previews__item--selected': currentWork.id === work.id}"
-    )
+    ).workslide-item.workslide-li
       a.works-slider__thumb-link
         img(:src="work.photo").works-slider__thumb
       //- pre {{sortedWorks}}
