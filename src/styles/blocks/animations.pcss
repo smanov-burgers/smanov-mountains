@@ -1,9 +1,80 @@
-.fade {
+// .fade {
+//     opacity: 0;
+//     transition: 1s;
+// }
+  
+// .outside {
+//     position: absolute;
+//     bottom: 100%;
+// }
+
+// .workslide-leave-active, 
+// .workslide-enter-active {
+//     transition: 1s;
+// }
+
+
+// .workslide-leave {
+//     opacity: 1;
+//     transform: translate(0px);
+// }
+
+// .workslide-leave {
+//     opacity: 0;
+//     transform: translate(100px);
+// }
+
+// .workslide-enter {
+//     opacity: 0;
+//     transform: translate(-100px);
+// }
+
+// .workslide-enter-to {
+//     opacity: 1;
+//     transform: translate(0px);
+// }
+.workslide-item {
+    transition: all 1s;
+  }
+  .workslide-enter
+  {
     opacity: 0;
-    transition: 1s;
+    transform: translateY(-20px);
+  }
+  .workslide-leave-to
+  {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .workslide-leave-active {
+    position: absolute;
+  }
+  .workslide-li{
+    transition: all 1s ease;
+  }
+
+
+////////////////////
+.fade-enter-active, .fade-leave-active {
+    transition: opacity 0.5s ease-out;
 }
   
-.outside {
-    position: absolute;
-    bottom: 100%;
+.fade-enter, .fade-leave-to {
+    opacity: 0;
+}
+
+
+////////////////////
+
+.flip-enter-active {
+    transition: all .2s cubic-bezier(0.55, 0.085, 0.68, 0.53); //ease-in-quad
+}
+  
+.flip-leave-active {
+    transition: all .25s cubic-bezier(0.25, 0.46, 0.45, 0.94); //ease-out-quad
+}
+
+.flip-enter, .flip-leave-to {
+    transform: scaleY(0) translateZ(0);
+    opacity: 0;
 }
